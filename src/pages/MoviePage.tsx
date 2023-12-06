@@ -1,6 +1,6 @@
-import './Movie'
+import './MoviePage'
 
-const Movie = () => {
+const MoviePage = () => {
     return (
         <>
             <h1> Movie page </h1>
@@ -8,4 +8,4 @@ const Movie = () => {
     )
 }
 
-export default Movie
+export default MoviePage

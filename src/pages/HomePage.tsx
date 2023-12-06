@@ -1,6 +1,6 @@
-import './Home'
+import './HomePage'
 
-const Home = () => {
+const HomePage = () => {
     return (
         <>
             <h1> Home Page </h1>
@@ -8,4 +8,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default HomePage
