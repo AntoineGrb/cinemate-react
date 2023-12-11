@@ -1,9 +1,25 @@
+import styled from "styled-components"
+import {spacing, colors} from '../utils/styleVariables.js'
 
+const Button = styled.button`
+    width: clamp(50px , 80% , 500px);
+    padding: ${spacing};
+    border:none;
+    border-radius: 20px;
+    background-color: ${colors.elements};
+    color:white;
+    cursor: pointer;
+    transition: background-color 0.1s ease-out;
+
+    &:hover {
+        background-color: ${colors.secondHover};
+    }
+`
 
 const ButtonGetList = () => {
     return (
         <>
-            <h1> ButtonGetList </h1>
+            <Button> Je veux ma liste de films </Button>
         </>
     )
 }

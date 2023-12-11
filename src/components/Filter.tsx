@@ -16,11 +16,11 @@ const Label = styled.label`
 `
 
 const Select = styled.select`
-    margin-bottom: $spacing;
-    padding: $spacing calc($spacing * 0.8);
-    border:1px solid $color-back;
+    margin-bottom: ${spacing};
+    padding: ${spacing} calc(${spacing} * 0.8);
+    border:1px solid ${colors.back};
     border-radius: 2px;
-    background-color: $color-elements;
+    background-color: ${colors.elements};
     color:white;
     cursor: pointer;
     transition: border-color 0.1s ease-out;

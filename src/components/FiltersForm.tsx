@@ -27,6 +27,15 @@ const FiltersInputs = styled.section`
     }
 `
 
+const FiltersButtons = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(${spacing} * 1.5);
+    position: relative;
+    overflow: hidden;
+`
+
 const FiltersForm = () => {
     return (
         <>
@@ -37,8 +46,10 @@ const FiltersForm = () => {
                     <Filter label="Pays:" options={countries}/>
                     <Filter label="Durée:" options={durations}/>
                 </FiltersInputs>
-                <ButtonGetList />
-                <ButtonGetLucky />
+                <FiltersButtons>
+                    <ButtonGetList />
+                    <ButtonGetLucky />
+                </FiltersButtons>
             </Filters>
         </>
     )
