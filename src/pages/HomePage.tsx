@@ -1,9 +1,16 @@
 import './HomePage'
+import HomeHeader from '../components/HomeHeader'
+import FiltersForm from '../components/FiltersForm'
+import MoviesList from '../components/MoviesList'
+import Footer from '../components/Footer'
 
 const HomePage = () => {
     return (
         <>
-            <h1> Home Page </h1>
+            <HomeHeader />
+            <FiltersForm />
+            <MoviesList />
+            <Footer />
         </>
     )
 }
