@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import {mediaSizes , spacing} from '../utils/styleVariables.js'
-import Star from './Star.js'
+import Rate from './Rate.js'
 import Tag  from './Tag.js'
 
 const Title = styled.h1`
@@ -30,17 +30,11 @@ const Subtitle = styled.div`
     }
 `
 
-const Rate = styled.div`
-    display: flex;
-    gap: 5px;
-    align-items:center;
-`
-
 const Tags = styled.div`
     display: flex;
     justify-content: center;
-    gap:calc(${spacing} * 1.5);
-    margin-bottom: calc(${spacing} * 4);
+    gap:${spacing};
+    margin-bottom: calc(${spacing} * 6);
     @media (min-width: ${mediaSizes.smallscreen}) {
         justify-content: flex-start;
     }
@@ -53,12 +47,10 @@ const MovieHeadInfos = () => {
             <Subtitle>
                 <p> 2016 </p>
                 <p> | </p>
-                <Rate> 
-                    <Star />
-                    <p> 8.1 </p>
-                </Rate>
+                <Rate />
             </Subtitle>
             <Tags> 
+                <Tag />
                 <Tag />
             </Tags>
         </>

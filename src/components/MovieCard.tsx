@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {mediaSizes, spacing} from '../utils/styleVariables.js'
 import Tag from './Tag.js'
-import Star from './Star.js'
+import Rate from './Rate.js'
 import { Link } from 'react-router-dom'
 import CardIcons from './CardIcons.js'
 
@@ -47,30 +47,6 @@ const MainInfos = styled.div`
     margin-bottom: 5px;
 `
 
-const Rate = styled.div`
-    display: flex;
-    align-items: flex-start;
-    gap: calc(${spacing} *0.5);
-
-    &-star {
-        font-size: 1.3rem;
-        color: lightgreen;
-        position: relative;
-        @media (min-width: ${mediaSizes.largescreen}) {
-            font-size: 1.8rem;
-            top:-1px;
-            left: -3px;
-        }
-    }
-
-    > p {
-        font-size: 1.5rem;
-        @media (min-width: ${mediaSizes.largescreen}) {
-            font-size: 1.8rem;
-        }
-    }
-`
-
 const SecondaryInfos = styled.div`
     margin-bottom: calc(${spacing});
 `
@@ -94,7 +70,7 @@ const MovieCard = () => {
             <Card>
                 <Cover>
                     <Link to={`movie/1`}>
-                        <img src="/tests/inception-affiche.jpg" alt="cover" />
+                        <img src="/tests/inception.jpg" alt="cover" />
                     </Link>
                 </Cover>
                 <Content>
@@ -102,16 +78,14 @@ const MovieCard = () => {
                         <Link to={`movie/1`}>
                             <h2> Inception </h2> 
                         </Link>
-                        <Rate>
-                            <Star />
-                            <p> 8.1 </p>
-                        </Rate>
+                        <Rate />
                     </MainInfos>
                     <SecondaryInfos>
                         <p> 2009 </p>
                         <p> USA </p>
                     </SecondaryInfos>
                     <Tags>
+                        <Tag/>
                         <Tag/>
                     </Tags>
                     <CardIcons />

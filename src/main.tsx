@@ -1,11 +1,74 @@
-import './main.scss'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {BrowserRouter} from 'react-router-dom'
 import App from './App.tsx'
 
+import { createGlobalStyle } from 'styled-components'
+
+const GlobalStyle = createGlobalStyle`
+  //Styles globaux
+  * {
+      margin:0;
+      padding:0;
+      box-sizing: border-box;
+  }
+
+  body {
+      background-color: rgb(41, 37, 37);
+  }
+
+  .hidden { //Pour cacher les éléments
+      display: none !important;
+  }
+
+  .fa-solid.hidden { //Ecraser le style de base de font-awesome pour gérer le display des icones
+      --fa-display:none;
+  }
+
+  //Textes et polices
+  h1, h2, p {
+      color:white;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-weight: 300;
+  }
+  
+  h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      font-family: 'Anton', sans-serif;
+  }
+  
+  h2 {
+      font-size: 1.5rem;
+  }
+  
+  p {
+      line-height: 1.4rem;
+      font-size: 1rem;
+  }
+  
+  label, button, select {
+      color:white;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.9rem;
+  }
+  
+  button, select {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      font-size: 0.9rem;
+  }
+  
+  a, Link {
+      text-decoration: none;
+      color:whitesmoke;
+  }
+
+`
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
+    <GlobalStyle />
     <BrowserRouter>
       <App />
     </BrowserRouter>
