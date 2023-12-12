@@ -3,7 +3,6 @@ import {mediaSizes, spacing} from '../utils/styleVariables.ts'
 import SearchBar from "./SearchBar"
 
 const Header = styled.header`
-    max-width: 90%;
     margin: calc(${spacing} * 4) auto;
     @media (max-width: ${mediaSizes.smallscreen}) {
         min-width: 100%;
