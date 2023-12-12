@@ -72,13 +72,13 @@ const Rate = styled.div`
 `
 
 const SecondaryInfos = styled.div`
-    margin-bottom: calc($spacing);
+    margin-bottom: calc(${spacing});
 `
 
 const Tags = styled.div`
     display: flex;
     justify-content: flex-start;
-    gap:$spacing;
+    gap:${spacing};
     margin-bottom: calc(${spacing} * 1.5);
 `
 
