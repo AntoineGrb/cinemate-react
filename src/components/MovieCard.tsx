@@ -94,7 +94,7 @@ const MovieCard = () => {
             <Card>
                 <Cover>
                     <Link to={`movie/1`}>
-                        <img src="./images/Test/inception.jpg" alt="cover" />
+                        <img src="/tests/inception-affiche.jpg" alt="cover" />
                     </Link>
                 </Cover>
                 <Content>
@@ -104,6 +104,7 @@ const MovieCard = () => {
                         </Link>
                         <Rate>
                             <Star />
+                            <p> 8.1 </p>
                         </Rate>
                     </MainInfos>
                     <SecondaryInfos>
