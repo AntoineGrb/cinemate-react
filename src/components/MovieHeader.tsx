@@ -12,7 +12,7 @@ const HeaderBigScreens = styled.header`
 const HeaderMobile = styled.header`
     height: 300px;
     margin: auto;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(41, 37, 37, 1)), url('/tests/inception-cover.jpg');
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .1), rgba(41, 37, 37, 1)), url('/tests/inception-cover.jpg');
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 

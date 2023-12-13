@@ -1,4 +1,4 @@
-export const genres = [
+export const genresOptions = [
     {name: 'Action 💪', value: '28'},
     {name: 'Animation 🐭', value: '16'}, 
     {name: 'Aventure 🌍', value: '12'},  
@@ -13,7 +13,7 @@ export const genres = [
 ];
 
 
-export const years = [
+export const yearsOptions = [
     {name:'Années 2020 📆' , value:'2020' },
     {name:'Années 2010 📆' , value:'2010'},
     {name:'Années 2000 📆' , value:'2000'},
@@ -22,7 +22,7 @@ export const years = [
     {name:'Années 1970 🗓️' , value:'1970'},
 ]
 
-export const countries = [
+export const countriesOptions = [
     {name: 'Allemagne 🇩🇪', value: 'DE'},
     {name: 'Canada 🇨🇦', value: 'CA'},
     {name: 'Corée du sud 🇰🇷', value: 'KR'},
@@ -37,7 +37,7 @@ export const countries = [
 ]
 
 
-export const durations = [
+export const durationsOptions = [
     {name:'Moins de 1h30 🕜', value:''},
     {name:'Entre 1h30 et 2h 🕑', value:''},
     {name:'Entre 2h et 2h30 🕝', value:''},

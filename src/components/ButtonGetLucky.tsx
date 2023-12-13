@@ -17,11 +17,15 @@ const Button = styled.button`
     }
 `
 
-const ButtonGetLucky = () => {
+interface ButtonProps {
+    clickToFetch: () => void
+}
+
+const ButtonGetLucky = ({clickToFetch}: ButtonProps) => {
 
     return (
         <>
-            <Button onClick={handleScrollAfterClick}> Je veux MON film </Button>
+            <Button onClick={() => {clickToFetch() , handleScrollAfterClick()}}> Je veux MON film </Button>
         </>
     )
 }

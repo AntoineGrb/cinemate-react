@@ -40,7 +40,8 @@ const Option = styled.option`
 
 interface FilterProps {
     label:string,
-    options:OptionsObjects[]
+    options:OptionsObjects[],
+    setValue:React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface OptionsObjects {
@@ -49,14 +50,14 @@ interface OptionsObjects {
     flag?:string
 }
 
-const Filter = ({label , options}:FilterProps) => {
+const Filter = ({setValue, label , options}:FilterProps) => {
     return (
         <>
             <FilterWrapper>
                 <Label> {label} </Label>
-                <Select>
+                <Select onChange={e => setValue(e.target.value)}>
                     {options.map((option, index) => (
-                        <Option key={index}> {option.name}</Option>
+                        <Option value={option.value} key={index}> {option.name}</Option>
                     ))}
                 </Select>
             </FilterWrapper>

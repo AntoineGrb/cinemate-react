@@ -17,11 +17,15 @@ const Button = styled.button`
     }
 `
 
-const ButtonGetList = () => {
+interface ButtonProps {
+    clickToFetch: () => void
+}
+
+const ButtonGetList = ({clickToFetch}: ButtonProps) => {
 
     return (
         <>
-            <Button onClick={handleScrollAfterClick}> Je veux ma liste de films </Button>
+            <Button onClick={() => {clickToFetch() , handleScrollAfterClick()}}> Je veux ma liste de films </Button>
         </>
     )
 }
