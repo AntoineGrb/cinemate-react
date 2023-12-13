@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import {mediaSizes, spacing} from '../utils/styleVariables.js'
-import { genres , years, countries, durations } from "../utils/filtersOptions.js"
+import {mediaSizes, spacing} from '../data/styleVariables.js'
+import { genres , years, countries, durations } from "../data/filtersOptions.js"
 import ButtonGetList from "./ButtonGetList"
 import ButtonGetLucky from "./ButtonGetLucky"
 import Filter from "./Filter"

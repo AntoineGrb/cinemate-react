@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import {colors} from '../utils/styleVariables.js'
+import {colors} from '../data/styleVariables.js'
 
 const SearchContainer = styled.div`
     display: flex;
@@ -24,13 +24,27 @@ const SearchInput = styled.input`
     }
 `
 
-const SearchBar = () => {
+interface SearchBarProps {
+    isMobile: boolean
+}
+
+const SearchBar = ({isMobile}: SearchBarProps) => {
     return (
         <>
             <SearchContainer> 
-                <SearchInput type="text" placeholder="Rechercher une série"  />
-                <i className="header-icon fa-solid fa-magnifying-glass"></i>
-                <i className="header-icon fa-solid fa-times hidden"></i>
+                {
+                    isMobile ? (
+                        <>
+                        <SearchInput type="text" placeholder="Rechercher une série"  />
+                        <i className="header-icon fa-solid fa-magnifying-glass"></i>
+                        <i className="header-icon fa-solid fa-times"></i>
+                        </>
+                    )
+                    : (
+                        <SearchInput type="text" placeholder="Rechercher une série"  />
+                    )
+                }
+                
             </SearchContainer>
         </>
     )

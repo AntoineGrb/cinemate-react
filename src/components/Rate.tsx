@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {mediaSizes , spacing} from '../utils/styleVariables.js'
+import {mediaSizes , spacing} from '../data/styleVariables.js'
 
 const RateContainer = styled.div`
     display: flex;

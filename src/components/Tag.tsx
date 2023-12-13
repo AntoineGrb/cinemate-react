@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {colors} from '../utils/styleVariables.js'
+import {colors} from '../data/styleVariables.js'
 
 const TagPills = styled.p`
     border: none;

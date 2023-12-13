@@ -1,4 +1,3 @@
-import './MoviePage'
 import MovieDetails from '../components/MovieDetails'
 import MovieHeader from '../components/MovieHeader'
 

@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import {spacing, colors} from '../utils/styleVariables.js'
+import {spacing, colors} from '../data/styleVariables.js'
 
 const Button = styled.button`
     width: clamp(50px , 80% , 500px);

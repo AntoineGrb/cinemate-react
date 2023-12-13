@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {mediaSizes} from '../utils/styleVariables.js'
+import {mediaSizes} from '../data/styleVariables.js'
 // import MoviePoster from './MoviePoster.js'
 import MovieHeadInfos from './MovieHeadInfos.js'
 import MovieInfos from './MovieInfos.js'

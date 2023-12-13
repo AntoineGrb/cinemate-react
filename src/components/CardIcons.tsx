@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {colors, spacing} from '../utils/styleVariables.js'
+import {colors, spacing} from '../data/styleVariables.js'
 import { Link } from 'react-router-dom'
 
 const IconsContainer = styled.div`

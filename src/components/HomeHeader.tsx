@@ -1,11 +1,14 @@
 import styled from "styled-components"
-import {mediaSizes, spacing} from '../utils/styleVariables.ts'
+import {mediaSizes, spacing} from '../data/styleVariables.ts'
+import { useState , useEffect } from "react"
 import SearchBar from "./SearchBar"
+import ProfileIcon from "./ProfileIcon.tsx"
 
 const Header = styled.header`
     margin: calc(${spacing} * 4) auto;
-    @media (max-width: ${mediaSizes.smallscreen}) {
-        min-width: 100%;
+    max-width: 90%;
+    @media (min-width: ${mediaSizes.smallscreen}) {
+        max-width: 100%;
     }
 `
 
@@ -15,10 +18,6 @@ const HeaderMenu = styled.div`
     align-items: center;
     margin-bottom: calc(${spacing} * 4);
     min-height: 40px;
-`
-
-const HeaderLogo = styled.div`
-    //A compléter
 `
 
 const HeaderTitle = styled.h1`
@@ -40,28 +39,27 @@ const HeaderTitle = styled.h1`
     }
 `
 
-// const HeaderProfile = styled.a`
-//     display: flex;
-//     gap:$spacing;
-//     align-items: flex-start;
-//     cursor: pointer;
-
-//     i, p {
-//         transition: color 0.1s ease-out;
-//     }
-
-//     &:hover i , &:hover p {
-//         color:$color-second-hover;
-//     }
-// `
-
 const HomeHeader = () => {
+
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 1000)
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 1000)
+        }
+        window.addEventListener('resize' , handleResize)
+
+        return () => {
+            window.removeEventListener('resize' , handleResize)
+        }
+    },[])
+
     return (
         <>
             <Header>
                 <HeaderMenu>
-                    <HeaderLogo> Cinémate </HeaderLogo>
-                    <SearchBar />
+                    <ProfileIcon isMobile={isMobile}/>
+                    <SearchBar isMobile={isMobile}/>
                 </HeaderMenu>
                 <HeaderTitle> Qu'est ce qu'on se mate ce soir ? <img src="/assets/logo-popcorn.png" /> </HeaderTitle>
             </Header>

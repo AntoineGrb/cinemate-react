@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import {mediaSizes, spacing, colors} from '../utils/styleVariables.js'
+import {mediaSizes, spacing, colors} from '../data/styleVariables.js'
 
 
 const FilterWrapper = styled.div`

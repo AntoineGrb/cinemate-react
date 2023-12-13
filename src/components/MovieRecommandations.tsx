@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {mediaSizes} from '../utils/styleVariables.js'
+import {mediaSizes} from '../data/styleVariables.js'
 import RecommandationItem from './RecommandationItem.js'
 
 const Title = styled.h2`
