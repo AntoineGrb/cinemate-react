@@ -1,10 +1,16 @@
 import styled from "styled-components"
 import {colors} from '../data/styleVariables.js'
+import { useState } from "react"
 
 const SearchContainer = styled.div`
     display: flex;
     gap: 5px;
     align-items: center;
+
+    i {
+        font-size: 1.4rem;
+        color:white;
+    }
 `
 
 const SearchInput = styled.input`
@@ -29,22 +35,25 @@ interface SearchBarProps {
 }
 
 const SearchBar = ({isMobile}: SearchBarProps) => {
+
+    const [isActive, setIsActive] = useState(false);
+
+    //Logique des rendus de la search bar 
+    const renderMobileSearch = () => (
+        <>
+            <SearchInput type="text" placeholder="Rechercher une série" />
+            <i onClick={() => setIsActive(false)} className="fa-solid fa-times"></i>
+        </>
+    )
+
+    const renderMobileGlassIcon = () => (
+        <i onClick={() => setIsActive(true)} className="fa-solid fa-magnifying-glass"></i>
+    )
+
     return (
         <>
             <SearchContainer> 
-                {
-                    isMobile ? (
-                        <>
-                        <SearchInput type="text" placeholder="Rechercher une série"  />
-                        <i className="header-icon fa-solid fa-magnifying-glass"></i>
-                        <i className="header-icon fa-solid fa-times"></i>
-                        </>
-                    )
-                    : (
-                        <SearchInput type="text" placeholder="Rechercher une série"  />
-                    )
-                }
-                
+                {isMobile ? (isActive ? renderMobileSearch() : renderMobileGlassIcon()) : <SearchInput type="text" placeholder="Rechercher une série" />}
             </SearchContainer>
         </>
     )
