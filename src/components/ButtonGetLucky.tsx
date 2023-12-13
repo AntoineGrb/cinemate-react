@@ -17,9 +17,31 @@ const Button = styled.button`
 `
 
 const ButtonGetLucky = () => {
+
+    
+    const handleScrollAfterClick = () => {
+
+        let topDistance = 0;
+        if (window.innerWidth < 681) {
+            topDistance = 750;
+        } 
+        else if (window.innerWidth < 1000) {
+            topDistance = 550;
+        }
+        else {
+            topDistance = 620
+        }
+
+        window.scrollTo({
+            top: topDistance,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }
+
     return (
         <>
-            <Button> Je veux MON film </Button>
+            <Button onClick={handleScrollAfterClick}> Je veux MON film </Button>
         </>
     )
 }

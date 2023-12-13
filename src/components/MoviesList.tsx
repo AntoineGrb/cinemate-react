@@ -21,6 +21,8 @@ const MoviesList = () => {
             <MoviesContainer>
                 <MovieCard />
                 <MovieCard />
+                <MovieCard />
+                <MovieCard />
             </MoviesContainer>
         </>
     )
