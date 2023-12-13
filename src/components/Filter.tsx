@@ -38,14 +38,25 @@ const Option = styled.option`
     background-color: rgb(248,240,251);
 `
 
-const Filter = ({label , options}) => {
+interface FilterProps {
+    label:string,
+    options:OptionsObjects[]
+}
+
+interface OptionsObjects {
+    name:string,
+    value:string,
+    flag?:string
+}
+
+const Filter = ({label , options}:FilterProps) => {
     return (
         <>
             <FilterWrapper>
                 <Label> {label} </Label>
                 <Select>
                     {options.map((option, index) => (
-                        <Option key={index}> {option.name} </Option>
+                        <Option key={index}> {option.name}</Option>
                     ))}
                 </Select>
             </FilterWrapper>
