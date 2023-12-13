@@ -1,5 +1,7 @@
 import styled from "styled-components"
 import {spacing, colors} from '../data/styleVariables.js'
+import {handleScrollAfterClick} from '../utils/handleScrollAfterClick'
+
 const Button = styled.button`
     width: clamp(50px , 80% , 500px);
     padding: ${spacing};
@@ -16,26 +18,6 @@ const Button = styled.button`
 `
 
 const ButtonGetList = () => {
-
-    const handleScrollAfterClick = () => {
-
-        let topDistance = 0;
-        if (window.innerWidth < 681) {
-            topDistance = 750;
-        } 
-        else if (window.innerWidth < 1000) {
-            topDistance = 550;
-        }
-        else {
-            topDistance = 620
-        }
-
-        window.scrollTo({
-            top: topDistance,
-            left: 0,
-            behavior: 'smooth'
-        });
-    }
 
     return (
         <>
