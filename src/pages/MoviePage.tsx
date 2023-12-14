@@ -9,25 +9,24 @@ import { useEffect } from 'react'
 const MoviePage = () => {
 
     const {id} = useParams();
-    let movieId = 1;
-    if (typeof id === 'number') {
-        movieId = Number(id)
+    let movieId = Number(id);
+    if (isNaN(movieId)) {
+        movieId = 1;
     }
-    
-    console.log(movieId)
 
-    const {movieDetails, fetchMovieDetails, isLoading, isError} = useFetchMovieDetails(movieId);
+    const {movieDetails, fetchMovieDetails, isLoading, isError, errorMessage} = useFetchMovieDetails(movieId);
 
     useEffect(() => {
         if (movieId) {
             fetchMovieDetails()
+            console.log('isError' , isError)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[movieId])
 
     return (
         <>
-            {isError && <Error message='Erreur lors du chargement du film' isFullScreen={true}/>}
+            {isError && <Error message={errorMessage} isFullScreen={true}/>}
             {!isError && isLoading && <Loader isFullScreen={true}/>}
             {!isError && !isLoading && movieDetails && (
                     <>

@@ -24,7 +24,8 @@ const useFetchMovieDetails = (id:number) => {
 
     const [movieDetails, setMovieDetails] = useState<MovieDetailsProps | null>(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] =useState(false);
+    const [isError, setIsError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const fetchMovieDetails = async () => {
 
@@ -45,10 +46,20 @@ const useFetchMovieDetails = (id:number) => {
             setIsError(false);
             // await new Promise(resolve => setTimeout(resolve, 2000));
             const apiResponse = await axios.get(url , options);
-            console.log(apiResponse);
+            console.log('réponse API', apiResponse);
             setMovieDetails(apiResponse.data);
 
         } catch (error) {
+            if (axios.isAxiosError(error)) { //On check si on récupère un objet d'erreur axios
+                const status = error.response?.status //Axios ne renvoit pas toujours l'objet response en fonction de l'erreur
+                if (status === 404) {
+                    setErrorMessage("Errer 404 ==> Le film n'a pas été trouvé dans la base !")
+                } else {
+                    setErrorMessage("Erreur 500 ==> Erreur lors de la communication avec l'API")
+                }
+            } else { //Autre erreur qui n'est pas lié à axios
+                setErrorMessage("Erreur lors de la récupération des données")
+            }
             console.error(error);
             setIsError(true);
 
@@ -57,7 +68,7 @@ const useFetchMovieDetails = (id:number) => {
         }
     }
 
-    return {movieDetails, fetchMovieDetails, isLoading, isError}
+    return {movieDetails, fetchMovieDetails, isLoading, isError, errorMessage}
 }
 
 export default useFetchMovieDetails

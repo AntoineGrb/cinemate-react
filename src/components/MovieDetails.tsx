@@ -17,7 +17,7 @@ const MovieContainer = styled.main`
         display: flex;
         gap: 50px;
         align-items: flex-start;
-        top:-185px;
+        top:-180px;
     }
 `
 

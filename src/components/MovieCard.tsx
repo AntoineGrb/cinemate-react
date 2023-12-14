@@ -43,9 +43,18 @@ const Content = styled.div`
 
 const MainInfos = styled.div`
     display: flex;
+    gap:10px;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 5px;
+
+    h2 {
+        font-size:1.3rem;
+        @media (min-width: ${mediaSizes.phone}) {
+            font-size:1.5rem;
+        }
+    }
+    
 `
 
 const SecondaryInfos = styled.div`
@@ -54,9 +63,11 @@ const SecondaryInfos = styled.div`
 
 const Tags = styled.div`
     display: flex;
+    flex-wrap:wrap;
     justify-content: flex-start;
     gap:${spacing};
     margin-bottom: calc(${spacing} * 1.5);
+
 `
 
 // const Icons = styled.div`

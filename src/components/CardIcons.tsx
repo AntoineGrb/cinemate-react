@@ -16,7 +16,7 @@ const Icon = styled.i`
 
     &:hover {
         color:${colors.second};
-        font-size: 1.6rem;
+
     }
 `
 
