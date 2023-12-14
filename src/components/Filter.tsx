@@ -56,7 +56,7 @@ interface OptionsObjects {
     valueMax?:number
 }
 
-const Filter = ({setValue, setValueMinMax, label , options}:FilterProps) => {
+const Filter = ({setValue, setValueMinMax, label , options}: FilterProps) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 

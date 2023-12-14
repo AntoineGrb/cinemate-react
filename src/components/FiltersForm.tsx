@@ -51,17 +51,15 @@ interface Range {
     valueMax:number
 }
 
-const FiltersForm = ({clickToFetch, setGenre, setYear, setCountry, setDuration, setPopularity, setRating}:FiltersFormProps) => {
-
-    //! - la sélection des filtres change les states locaux des inputs. Au clic sur le bouton
+const FiltersForm = ({clickToFetch, setGenre, setYear, setCountry, setDuration, setPopularity, setRating}: FiltersFormProps) => {
 
     return (
         <>
             <Filters>
                 <FiltersInputs>
                     <Filter setValue={setGenre} label="Genre:" options={genresOptions} />
-                    <Filter setValueMinMax={setYear} label="Année:" options={yearsOptions}/>
                     <Filter setValue={setCountry} label="Pays:" options={countriesOptions}/>
+                    <Filter setValueMinMax={setYear} label="Année:" options={yearsOptions}/>
                     <Filter setValueMinMax={setDuration} label="Durée:" options={durationsOptions}/>
                     <Filter setValueMinMax={setPopularity} label="Popularité:" options={popularityOptions}/>
                     <Filter setValueMinMax={setRating} label="Notation:" options={ratingsOptions}/>
