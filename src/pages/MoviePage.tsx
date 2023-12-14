@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import useFetchMovieDetails from '../hooks/useFetchMovieDetails'
 import MovieDetails from '../components/MovieDetails'
 import MovieHeader from '../components/MovieHeader'
+import Loader from '../components/Loader'
 import { useEffect } from 'react'
 
 const MoviePage = () => {
@@ -9,7 +10,7 @@ const MoviePage = () => {
     const {id} = useParams();
     const movieId = Number(id)
 
-    const {movieDetails, fetchMovieDetails} = useFetchMovieDetails(movieId);
+    const {movieDetails, fetchMovieDetails, isLoading} = useFetchMovieDetails(movieId);
 
     useEffect(() => {
         if (movieId) {
@@ -21,8 +22,8 @@ const MoviePage = () => {
 
     return (
         <>
-            {
-                movieDetails && (
+            {isLoading && <Loader isFullScreen={true}/>}
+            {!isLoading && movieDetails && (
                     <>
                     <MovieHeader backdropPath={movieDetails?.backdrop_path} />
                     <MovieDetails {...movieDetails}/>

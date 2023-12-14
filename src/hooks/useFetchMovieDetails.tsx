@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
+import { handleScrollAfterClick } from "../utils/handleScrollAfterClick"
 
 interface MovieDetailsProps {
     title:string,
@@ -22,35 +23,39 @@ interface GenresProps {
 
 const useFetchMovieDetails = (id:number) => {
 
-    const [movieDetails, setMovieDetails] = useState<MovieDetailsProps | null>(null)
-    //! Ajouter loader et error
+    const [movieDetails, setMovieDetails] = useState<MovieDetailsProps | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchMovieDetails = async () => {
 
-        try {
-            //Les options d'authentification de l'API
-            const options = {
-                method: 'GET',
-                headers: {
-                    accept: 'application/json',
-                    Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`
-                }
-            };
+        //Les options d'authentification de l'API
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`
+            }
+        };
 
-            //L'URL de l'appel vers le endpoint movie
-            const url = `https://api.themoviedb.org/3/movie/${id}?language=fr`
-            
-            // L'appel
+        //L'URL de l'appel vers le endpoint movie
+        const url = `https://api.themoviedb.org/3/movie/${id}?language=fr`
+
+        try {            
+            setIsLoading(true)
+            // await new Promise(resolve => setTimeout(resolve, 2000));
             const apiResponse = await axios.get(url , options);
-            console.log('dans le hook:' , apiResponse.data)
             setMovieDetails(apiResponse.data);
 
         } catch (error) {
             console.error(error)
+
+        } finally {
+            handleScrollAfterClick();
+            setIsLoading(false)
         }
     }
 
-    return {movieDetails, fetchMovieDetails}
+    return {movieDetails, fetchMovieDetails, isLoading}
 }
 
 export default useFetchMovieDetails

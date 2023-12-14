@@ -6,6 +6,7 @@ import HomeHeader from '../components/HomeHeader'
 import FiltersForm from '../components/FiltersForm.js'
 import MoviesList from '../components/MoviesList'
 import Footer from '../components/Footer'
+import Loader from '../components/Loader.js'
 
 const HomePageContainer = styled.div`
     max-width: 1300px;
@@ -35,7 +36,7 @@ const HomePage = () => {
     const [rating, setRating] = useState<Range>({valueMin:0, valueMax:10});
 
     //Call API
-    const {movies, fetchMovies} = useFetchMovies({
+    const {movies, fetchMovies, isLoading} = useFetchMovies({
         genre,
         country,
         yearMin:year.valueMin,
@@ -62,6 +63,7 @@ const HomePage = () => {
                         setPopularity={setPopularity}
                         setRating={setRating}
                      />
+                     {isLoading && <Loader isFullScreen={false}/>}
                     <MoviesList movies={movies} />
                     <Footer />
                 </main>
