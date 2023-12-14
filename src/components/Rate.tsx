@@ -24,7 +24,11 @@ const RateValue = styled.p`
     }
 `
 
-const Rate = () => {
+interface RateProps {
+    rate:number
+}
+
+const Rate = ({rate}: RateProps) => {
 
     const value = 7.1; //! Deviendra une prop
 
@@ -39,7 +43,7 @@ const Rate = () => {
         <>
             <RateContainer>
                 <RateStar color={starColor} className='fa-solid fa-star' />
-                <RateValue> {value} </RateValue>
+                <RateValue> {rate || 'N/A'} </RateValue>
             </RateContainer>
         </>
     )

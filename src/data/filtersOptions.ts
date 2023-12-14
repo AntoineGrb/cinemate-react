@@ -1,4 +1,5 @@
 export const genresOptions = [
+    {name: 'Tous 🌎', value: ''},
     {name: 'Action 💪', value: '28'},
     {name: 'Animation 🐭', value: '16'}, 
     {name: 'Aventure 🌍', value: '12'},  
@@ -14,6 +15,7 @@ export const genresOptions = [
 
 
 export const yearsOptions = [
+    {name: 'Tous 📆', valueMin: 1970, valueMax: 2029},
     {name:'Années 2020 📆', valueMin: 2020, valueMax: 2029},
     {name:'Années 2010 📆', valueMin: 2010, valueMax: 2019},
     {name:'Années 2000 📆', valueMin: 2000, valueMax: 2009},
@@ -25,8 +27,11 @@ export const yearsOptions = [
 
 
 export const countriesOptions = [
+    {name: 'Tous 🗺️', value: ''},
     {name: 'Allemagne 🇩🇪', value: 'DE'},
+    {name: 'Brésil 🇧🇷', value: 'BR'},
     {name: 'Canada 🇨🇦', value: 'CA'},
+    {name: 'Chine 🇨🇳', value: 'CN'},
     {name: 'Corée du sud 🇰🇷', value: 'KR'},
     {name: 'Danemark 🇩🇰', value: 'DK'},
     {name: 'Espagne 🇪🇸', value: 'ES'},
@@ -40,6 +45,7 @@ export const countriesOptions = [
 
 
 export const durationsOptions = [
+    {name: 'Tous ⏰', valueMin: 0, valueMax: 300},
     {name:'Moins de 1h30 🕜', valueMin: 0, valueMax: 90},
     {name:'Entre 1h30 et 2h 🕑', valueMin: 90, valueMax: 120},
     {name:'Entre 2h et 2h30 🕝', valueMin: 120, valueMax: 150},
@@ -49,14 +55,14 @@ export const durationsOptions = [
 
 
 export const popularityOptions = [
-    {name:'Tout 🌐', valueMin: 0, valueMax: 100000},
+    {name:'Tous 🌐', valueMin: 0, valueMax: 100000},
     {name:'Films très populaires 🌟', valueMin: 10000, valueMax: 100000},
     {name:'Films peu connus 🔍', valueMin: 0, valueMax: 5000},
 ]
 
 
 export const ratingsOptions = [
-    {name:'Tout 🎬', valueMin: 0, valueMax: 10},
+    {name:'Tous 🎬', valueMin: 0, valueMax: 10},
     {name:"Chefs-d'œuvre 🏆", valueMin: 8, valueMax: 10},
     {name:'Très bons films 👍', valueMin: 7, valueMax: 8},
     {name:'Bons films 👌', valueMin: 6, valueMax: 7},

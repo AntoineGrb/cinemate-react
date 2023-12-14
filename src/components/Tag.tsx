@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import {colors} from '../data/styleVariables.js'
+import { genresFormatted } from '../data/formattedData.js'
 
 const TagPills = styled.p`
     border: none;
@@ -10,10 +11,26 @@ const TagPills = styled.p`
     font-size: 0.9rem;
 `
 
-const Tag = () => {
+interface TagProps {
+    genre:number
+}
+
+const Tag = ({genre}: TagProps) => {
+
+    //Récupérer le genre formaté (tableau formattedData à part)
+    const getFormattedGenre = () => {
+        const formattedGenre = genresFormatted.find(el => el.value === genre);
+
+        if (formattedGenre) {
+            return formattedGenre.name
+        } else {
+            return genre
+        }
+    }
+
     return (
         <>
-            <TagPills> Action </TagPills>        
+            <TagPills> {getFormattedGenre()} </TagPills>        
         </>
     )
 }

@@ -15,14 +15,27 @@ const MoviesContainer = styled.section`
     }
 `
 
-const MoviesList = () => {
+interface MoviesListProps {
+    movies: MovieProps[]
+}
+
+interface MovieProps {
+    backdrop_path: string,
+    genre_ids: number[],
+    id:number,
+    original_language:string,
+    release_date:string,
+    title:string,
+    vote_average:number,
+}
+
+const MoviesList = ({movies}: MoviesListProps) => {
     return (
         <>
             <MoviesContainer>
-                <MovieCard />
-                <MovieCard />
-                <MovieCard />
-                <MovieCard />
+                {movies.map(movie => (
+                    <MovieCard key={movie.id} {...movie} />
+                ))}
             </MoviesContainer>
         </>
     )

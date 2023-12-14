@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { useState , useEffect } from 'react'
+import { useState } from 'react'
 import {mediaSizes} from '../data/styleVariables.js'
 import HomeHeader from '../components/HomeHeader'
 import FiltersForm from '../components/FiltersForm.js'
@@ -23,17 +23,16 @@ interface Range {
 
 const HomePage = () => {
 
-    //Définir les states pour l'appel API
-    const [genre, setGenre] = useState<string>('28');
-    const [country, setCountry] = useState<string>('DE');
+    //State liste des films
+    const [movies, setMovies] = useState([]);
+
+    //States appel API
+    const [genre, setGenre] = useState<string>('');
+    const [country, setCountry] = useState<string>('');
     const [year, setYear] = useState<Range>({valueMin:2020, valueMax:2029});
     const [duration, setDuration] = useState<Range>({valueMin:0, valueMax:90});
     const [popularity, setPopularity] = useState<Range>({valueMin:0, valueMax:100000});
     const [rating, setRating] = useState<Range>({valueMin:0, valueMax:10});
-
-    useEffect(() => {
-        console.log(genre, country, year, duration, popularity, rating)
-    },[genre, year, country, duration, popularity, rating])
 
     //Call API
     const fetchMovies = async () => {
@@ -70,7 +69,9 @@ const HomePage = () => {
             `.replace(/\s+/g, ''); //On retire les espaces et sauts de ligne pour la fonction fetch
 
             const apiResponse = await axios.get(formattedURL , options);
-            console.log(apiResponse.data);
+            console.log(formattedURL);
+            console.log(apiResponse.data.results)
+            setMovies(apiResponse.data.results);
 
         } catch (error) {
             console.error('Erreur lors de l\'appel')
@@ -94,7 +95,7 @@ const HomePage = () => {
                         setPopularity={setPopularity}
                         setRating={setRating}
                      />
-                    <MoviesList />
+                    <MoviesList movies={movies} />
                     <Footer />
                 </main>
             </HomePageContainer>

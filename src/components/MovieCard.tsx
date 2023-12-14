@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import {mediaSizes, spacing} from '../data/styleVariables.js'
+import { languagesFormatted } from '../data/formattedData.js'
 import Tag from './Tag.js'
 import Rate from './Rate.js'
 import { Link } from 'react-router-dom'
@@ -62,31 +63,60 @@ const Tags = styled.div`
 
 // `
 
+interface MovieCardProps {
+    backdrop_path: string,
+    genre_ids: number[],
+    id:number,
+    original_language:string,
+    release_date:string,
+    title:string,
+    vote_average:number,
+}
 
+const MovieCard = ({backdrop_path, genre_ids, id, original_language, release_date, title, vote_average}: MovieCardProps) => {
 
-const MovieCard = () => {
+    //Gérer les backdrop_path null => mettre une image par défaut
+    const handleBackdropImage = () => {
+        if (backdrop_path === null) {
+            return 'https://media.gqmagazine.fr/photos/603e6a8da9360b0585bcbc6a/16:9/w_1920,c_limit/108387402';
+        } else {
+            return `https://image.tmdb.org/t/p/w780/${backdrop_path}`
+        }
+    }
+
+    //Récupérer le langage formaté (tableau formattedData à part)
+    const getFormattedLanguage = () => {
+        const formattedLanguage = languagesFormatted.find(lang => lang.value === original_language);
+        if (formattedLanguage) {
+            return formattedLanguage.name
+        } else {
+            return original_language.toUpperCase()
+        }
+    }
+
     return (
         <>
             <Card>
                 <Cover>
-                    <Link to={`movie/1`}>
-                        <img src="/tests/inception.jpg" alt="cover" />
+                    <Link to={`movie/${id}`}>
+                        <img src={handleBackdropImage()} alt="cover" />
                     </Link>
                 </Cover>
                 <Content>
                     <MainInfos>
-                        <Link to={`movie/1`}>
-                            <h2> Inception </h2> 
+                        <Link to={`movie/${id}`}>
+                            <h2 style={{}}> {title} </h2> 
                         </Link>
-                        <Rate />
+                        <Rate rate={vote_average} />
                     </MainInfos>
                     <SecondaryInfos>
-                        <p> 2009 </p>
-                        <p> USA </p>
+                        <p> {release_date.substring(0,4)} </p>
+                        <p> {getFormattedLanguage()} </p>
                     </SecondaryInfos>
                     <Tags>
-                        <Tag/>
-                        <Tag/>
+                        {genre_ids.map((genre , index) => (
+                            <Tag key={index} genre={genre}/>
+                        ))}
                     </Tags>
                     <CardIcons />
                 </Content>
