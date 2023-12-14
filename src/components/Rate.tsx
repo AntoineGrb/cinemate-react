@@ -41,7 +41,8 @@ const Rate = ({rate}: RateProps) => {
         <>
             <RateContainer>
                 <RateStar color={starColor} className='fa-solid fa-star' />
-                <RateValue> {rate || 'N/A'} </RateValue>
+                {/* Manipulation mathématique pour arrondir à 1 chiffre après la virgule à l'inférieur */}
+                <RateValue> {Math.floor(rate * 10) / 10 || 'N/A'} </RateValue> 
             </RateContainer>
         </>
     )

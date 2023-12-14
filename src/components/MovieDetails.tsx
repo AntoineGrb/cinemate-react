@@ -35,17 +35,29 @@ const MovieContent = styled.section`
 
 interface MovieDetailsProps {
     title:string,
-    original_language:string
+    poster_path:string,
+    original_language:string,
+    original_title:string,
+    genres:GenresProps[],
+    overview:string,
+    release_date:string,
+    runtime:number,
+    vote_average:number
 }
 
-const MovieDetails = ({title, original_language}: MovieDetailsProps) => {
+interface GenresProps {
+    id:number,
+    name:string
+}
+
+const MovieDetails = ({title, poster_path, original_language, original_title, genres, overview, release_date, runtime, vote_average}: MovieDetailsProps) => {
     return (
         <>
             <MovieContainer>
-                <MoviePoster src='/tests/inception-affiche.jpg' />
+                <MoviePoster src={`https://image.tmdb.org/t/p/w780/${poster_path}`} />
                 <MovieContent>
-                    <MovieHeadInfos title={title}/>
-                    <MovieInfos language={original_language} />
+                    <MovieHeadInfos title={title} genres={genres} releaseDate={release_date} rate={vote_average}/>
+                    <MovieInfos originalTitle={original_title} language={original_language} releaseDate={release_date} runtime={runtime} overview={overview}/>
                     <MovieRecommandations />
                 </MovieContent>
             </MovieContainer>

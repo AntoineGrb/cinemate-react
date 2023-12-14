@@ -41,21 +41,30 @@ const Tags = styled.div`
 `
 
 interface MovieHeadInfosProps {
-    title:string
+    title:string,
+    genres:GenresProps[],
+    releaseDate:string,
+    rate:number
 }
 
-const MovieHeadInfos = ({title}: MovieHeadInfosProps) => {
+interface GenresProps {
+    id:number,
+    name:string
+}
+
+const MovieHeadInfos = ({title, genres, releaseDate, rate}: MovieHeadInfosProps) => {
     return (
         <>
             <Title> {title} </Title>
             <Subtitle>
-                <p> 2016 </p>
+                <p> {releaseDate.substring(0,4)} </p>
                 <p> | </p>
-                <Rate />
+                <Rate rate={rate} />
             </Subtitle>
-            <Tags> 
-                <Tag />
-                <Tag />
+            <Tags>
+                {genres.map((genre , index) => (
+                    <Tag key={index} genre={genre.id}/>
+                ))}
             </Tags>
         </>
     )

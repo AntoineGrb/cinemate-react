@@ -7,12 +7,17 @@ interface MovieDetailsProps {
     poster_path:string,
     original_language:string,
     original_title:string,
-    genres:number[],
+    genres:GenresProps[],
     id:number,
     overview:string,
     release_date:string,
     runtime:number,
     vote_average:number
+}
+
+interface GenresProps {
+    id:number,
+    name:string
 }
 
 const useFetchMovieDetails = (id:number) => {

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import {mediaSizes, spacing} from '../data/styleVariables.js'
-import { languagesFormatted } from '../data/formattedData.js'
+import { getFormattedLanguage } from '../utils/getFormattedLanguage.js'
 import Tag from './Tag.js'
 import Rate from './Rate.js'
 import { Link } from 'react-router-dom'
@@ -84,16 +84,6 @@ const MovieCard = ({backdrop_path, genre_ids, id, original_language, release_dat
         }
     }
 
-    //Récupérer le langage formaté (tableau formattedData à part)
-    const getFormattedLanguage = () => {
-        const formattedLanguage = languagesFormatted.find(lang => lang.value === original_language);
-        if (formattedLanguage) {
-            return formattedLanguage.name
-        } else {
-            return original_language.toUpperCase()
-        }
-    }
-
     return (
         <>
             <Card>
@@ -111,7 +101,7 @@ const MovieCard = ({backdrop_path, genre_ids, id, original_language, release_dat
                     </MainInfos>
                     <SecondaryInfos>
                         <p> {release_date.substring(0,4)} </p>
-                        <p> {getFormattedLanguage()} </p>
+                        <p> {getFormattedLanguage(original_language)} </p>
                     </SecondaryInfos>
                     <Tags>
                         {genre_ids.map((genre , index) => (

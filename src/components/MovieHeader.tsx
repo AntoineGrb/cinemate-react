@@ -41,7 +41,7 @@ const handleBackdropImage = (backdropPath: string | null): string => {
     if (backdropPath === null) {
         return 'https://media.gqmagazine.fr/photos/603e6a8da9360b0585bcbc6a/16:9/w_1920,c_limit/108387402';
     } else {
-        return `https://image.tmdb.org/t/p/w780/${backdropPath}`;
+        return `https://image.tmdb.org/t/p/w1280/${backdropPath}`;
     }
 }
 
