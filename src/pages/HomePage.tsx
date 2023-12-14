@@ -43,7 +43,7 @@ const HomePage = () => {
                 method: 'GET',
                 headers: {
                   accept: 'application/json',
-                  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiZmZkYWYxYzY1Yzk2MjlhNmM1NzgyYWJkOTg3ZDIwYSIsInN1YiI6IjY0NmNiYjVjNTRhMDk4MDEzODY1YmM5MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zW9JUZecD-3qV5GFncQIec_sSVddsnQZWRZPF4VcvCA'
+                  Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`
                 }
             };
 
