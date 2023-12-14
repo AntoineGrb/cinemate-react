@@ -1,6 +1,5 @@
 import { useState } from "react"
 import axios from "axios"
-import { handleScrollAfterClick } from "../utils/handleScrollAfterClick"
 
 interface MovieDetailsProps {
     title:string,
@@ -25,6 +24,7 @@ const useFetchMovieDetails = (id:number) => {
 
     const [movieDetails, setMovieDetails] = useState<MovieDetailsProps | null>(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] =useState(false);
 
     const fetchMovieDetails = async () => {
 
@@ -42,20 +42,22 @@ const useFetchMovieDetails = (id:number) => {
 
         try {            
             setIsLoading(true)
+            setIsError(false);
             // await new Promise(resolve => setTimeout(resolve, 2000));
             const apiResponse = await axios.get(url , options);
+            console.log(apiResponse);
             setMovieDetails(apiResponse.data);
 
         } catch (error) {
-            console.error(error)
+            console.error(error);
+            setIsError(true);
 
         } finally {
-            handleScrollAfterClick();
             setIsLoading(false)
         }
     }
 
-    return {movieDetails, fetchMovieDetails, isLoading}
+    return {movieDetails, fetchMovieDetails, isLoading, isError}
 }
 
 export default useFetchMovieDetails

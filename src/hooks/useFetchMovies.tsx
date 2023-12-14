@@ -20,7 +20,9 @@ const useFetchMovies = (params: useFetchMoviesProps) => {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [triggerScroll, setTriggerScroll] = useState(false);
+    const [isError, setIsError] =useState(false);
 
+    //Pour lancer le scroll auto quand les films sont chargés
     useEffect(() => {
         if (triggerScroll && !isLoading) {
             handleScrollAfterClick();
@@ -60,16 +62,17 @@ const useFetchMovies = (params: useFetchMoviesProps) => {
             vote_count.lte=${params.popularityMax}
             `.replace(/\s+/g, ''); //On retire les espaces et sauts de ligne pour la fonction fetch
 
-
         try {
             setMovies([]);
             setIsLoading(true);
+            setIsError(false);
             
             const apiResponse = await axios.get(formattedURL , options);
             setMovies(apiResponse.data.results);
 
         } catch (error) {
-            console.error(error)
+            console.error(error);
+            setIsError(true);
 
         } finally {
             setIsLoading(false);
@@ -77,7 +80,7 @@ const useFetchMovies = (params: useFetchMoviesProps) => {
         }
     }
 
-    return {movies, fetchMovies, isLoading}
+    return {movies, fetchMovies, isLoading, isError}
 }
 
 export default useFetchMovies

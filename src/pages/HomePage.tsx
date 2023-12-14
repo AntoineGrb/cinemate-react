@@ -7,6 +7,7 @@ import FiltersForm from '../components/FiltersForm.js'
 import MoviesList from '../components/MoviesList'
 import Footer from '../components/Footer'
 import Loader from '../components/Loader.js'
+import Error from '../components/Error.js'
 
 const HomePageContainer = styled.div`
     max-width: 1300px;
@@ -35,8 +36,8 @@ const HomePage = () => {
     const [popularity, setPopularity] = useState<Range>({valueMin:0, valueMax:100000});
     const [rating, setRating] = useState<Range>({valueMin:0, valueMax:10});
 
-    //Call API
-    const {movies, fetchMovies, isLoading} = useFetchMovies({
+    //On passe les paramètres au hook useFetchMovies et on récupère ses datas
+    const {movies, fetchMovies, isLoading, isError} = useFetchMovies({ 
         genre,
         country,
         yearMin:year.valueMin,
@@ -54,7 +55,7 @@ const HomePage = () => {
             <HomePageContainer>
                 <HomeHeader />
                 <main>
-                     <FiltersForm 
+                    <FiltersForm 
                         clickToFetch={fetchMovies} 
                         setGenre={setGenre} 
                         setYear={setYear} 
@@ -62,9 +63,10 @@ const HomePage = () => {
                         setDuration={setDuration}
                         setPopularity={setPopularity}
                         setRating={setRating}
-                     />
-                     {isLoading && <Loader isFullScreen={false}/>}
-                    <MoviesList movies={movies} />
+                    />
+                    {isError && <Error message='Erreur lors du chargement des films' isFullScreen={false} />}
+                    {isLoading && !isError && <Loader isFullScreen={false}/>}
+                    {!isLoading && !isError && <MoviesList movies={movies} />}
                     <Footer />
                 </main>
             </HomePageContainer>
