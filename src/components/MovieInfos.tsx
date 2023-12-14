@@ -43,7 +43,11 @@ const Video = styled.div`
     }
 `
 
-const MovieInfos = () => {
+interface MovieInfosProps {
+    language:string
+}
+
+const MovieInfos = ({language}: MovieInfosProps) => {
     return (
         <>
             <Info>
@@ -52,7 +56,7 @@ const MovieInfos = () => {
             </Info>
             <Info>
                 <i className="fa-solid fa-globe"></i>
-                <p><strong>Pays </strong> : USA </p>
+                <p><strong> Langue </strong> : {language} </p>
             </Info>
             <Info>
                 <i className="fa-regular fa-calendar-days"></i>

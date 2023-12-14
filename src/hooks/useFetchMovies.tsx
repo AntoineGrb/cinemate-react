@@ -53,8 +53,6 @@ const useFetchMovies = (params: useFetchMoviesProps) => {
 
         try {
             const apiResponse = await axios.get(formattedURL , options);
-            console.log(formattedURL);
-            console.log(apiResponse.data.results)
             setMovies(apiResponse.data.results);
 
         } catch (error) {

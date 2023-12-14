@@ -33,14 +33,19 @@ const MovieContent = styled.section`
     padding: 0;
 `
 
-const MovieDetails = () => {
+interface MovieDetailsProps {
+    title:string,
+    original_language:string
+}
+
+const MovieDetails = ({title, original_language}: MovieDetailsProps) => {
     return (
         <>
             <MovieContainer>
                 <MoviePoster src='/tests/inception-affiche.jpg' />
                 <MovieContent>
-                    <MovieHeadInfos />
-                    <MovieInfos />
+                    <MovieHeadInfos title={title}/>
+                    <MovieInfos language={original_language} />
                     <MovieRecommandations />
                 </MovieContent>
             </MovieContainer>

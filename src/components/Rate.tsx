@@ -30,14 +30,12 @@ interface RateProps {
 
 const Rate = ({rate}: RateProps) => {
 
-    const value = 7.1; //! Deviendra une prop
-
     const [starColor, setStarColor] = useState('#60A561')
 
     useEffect(() => {
-        const color = handleStarColor(value);
+        const color = handleStarColor(rate);
         setStarColor(color);
-    },[])
+    },[rate])
 
     return (
         <>

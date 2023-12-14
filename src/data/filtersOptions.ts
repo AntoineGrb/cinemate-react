@@ -64,9 +64,9 @@ export const popularityOptions = [
 export const ratingsOptions = [
     {name:'Tous 🎬', valueMin: 0, valueMax: 10},
     {name:"Chefs-d'œuvre 🏆", valueMin: 8, valueMax: 10},
-    {name:'Très bons films 👍', valueMin: 7, valueMax: 8},
-    {name:'Bons films 👌', valueMin: 6, valueMax: 7},
-    {name:'Films moyens 🤷', valueMin: 4, valueMax: 6},
-    {name:'Navets 🥬', valueMin: 0, valueMax: 4},
+    {name:'Excellents 👍', valueMin: 7, valueMax: 8},
+    {name:'Sympas 👌', valueMin: 6, valueMax: 7},
+    {name:'Moyens 🤷', valueMin: 4, valueMax: 6},
+    {name:'Navets 🥬', valueMin: 1, valueMax: 4},
 ]
 

@@ -40,10 +40,14 @@ const Tags = styled.div`
     }
 `
 
-const MovieHeadInfos = () => {
+interface MovieHeadInfosProps {
+    title:string
+}
+
+const MovieHeadInfos = ({title}: MovieHeadInfosProps) => {
     return (
         <>
-            <Title> Inception </Title>
+            <Title> {title} </Title>
             <Subtitle>
                 <p> 2016 </p>
                 <p> | </p>
