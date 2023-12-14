@@ -45,3 +45,18 @@ export const durationsOptions = [
     {name:'Plus de 3h 🕞', value:''},
 ]
 
+export const popularityOptions = [
+    {name:'Tout 🌐', valueMax:100000, valueMin:0},
+    {name:'Films très populaires 🌟', valueMax: 100000, valueMin:10000},
+    {name:'Films peu connus 🔍', valueMax: 5000, valueMin:0},
+]
+
+export const ratingsOptions = [
+    {name:'Tout 🎬' , valueMax:10, valueMin:0},
+    {name:"Chefs-d'œuvre 🏆" , valueMax: 10, valueMin:8},
+    {name:'Très bons films 👍' , valueMax: 8, valueMin:7},
+    {name:'Bons films 👌'  , valueMax: 7, valueMin:6},
+    {name:'Films moyens 🤷' , valueMax: 6, valueMin:4},
+    {name:'Navets 🥬' , valueMax: 4, valueMin:0},
+]
+

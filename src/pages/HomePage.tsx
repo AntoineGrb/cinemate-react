@@ -22,10 +22,12 @@ const HomePage = () => {
     const [year, setYear] = useState('');
     const [country, setCountry] = useState('');
     const [duration, setDuration] = useState('');
+    const [popularity, setPopularity] = useState('');
+    const [rating, setRating] = useState('');
 
     useEffect(() => {
-        console.log(genre, year, country, duration)
-    },[genre, year, country, duration])
+        console.log(genre, year, country, duration, popularity, rating)
+    },[genre, year, country, duration, popularity, rating])
 
     //Call API
     const fetchMovies = async () => {
@@ -50,7 +52,9 @@ const HomePage = () => {
                         setGenre={setGenre} 
                         setYear={setYear} 
                         setCountry={setCountry} 
-                        setDuration={setDuration} />
+                        setDuration={setDuration}
+                        setPopularity={setPopularity}
+                        setRating={setRating} />
                     <MoviesList />
                     <Footer />
                 </main>

@@ -46,8 +46,9 @@ interface FilterProps {
 
 interface OptionsObjects {
     name:string,
-    value:string,
-    flag?:string
+    value?:string,
+    valueMin?:number,
+    valueMax?:number
 }
 
 const Filter = ({setValue, label , options}:FilterProps) => {
