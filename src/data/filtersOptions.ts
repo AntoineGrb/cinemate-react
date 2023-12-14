@@ -14,13 +14,15 @@ export const genresOptions = [
 
 
 export const yearsOptions = [
-    {name:'Années 2020 📆' , value:'2020' },
-    {name:'Années 2010 📆' , value:'2010'},
-    {name:'Années 2000 📆' , value:'2000'},
-    {name:'Années 1990 🗓️' , value:'1990'},
-    {name:'Années 1980 🗓️' , value:'1980'},
-    {name:'Années 1970 🗓️' , value:'1970'},
+    {name:'Années 2020 📆', valueMin: 2020, valueMax: 2029},
+    {name:'Années 2010 📆', valueMin: 2010, valueMax: 2019},
+    {name:'Années 2000 📆', valueMin: 2000, valueMax: 2009},
+    {name:'Années 1990 🗓️', valueMin: 1990, valueMax: 1999},
+    {name:'Années 1980 🗓️', valueMin: 1980, valueMax: 1989},
+    {name:'Années 1970 🗓️', valueMin: 1970, valueMax: 1979},
+    {name:'Avant 1970 🗓️', valueMin: 1900, valueMax: 1969},
 ]
+
 
 export const countriesOptions = [
     {name: 'Allemagne 🇩🇪', value: 'DE'},
@@ -38,25 +40,27 @@ export const countriesOptions = [
 
 
 export const durationsOptions = [
-    {name:'Moins de 1h30 🕜', value:''},
-    {name:'Entre 1h30 et 2h 🕑', value:''},
-    {name:'Entre 2h et 2h30 🕝', value:''},
-    {name:'Entre 2h30 et 3h 🕒', value:''},
-    {name:'Plus de 3h 🕞', value:''},
+    {name:'Moins de 1h30 🕜', valueMin: 0, valueMax: 90},
+    {name:'Entre 1h30 et 2h 🕑', valueMin: 90, valueMax: 120},
+    {name:'Entre 2h et 2h30 🕝', valueMin: 120, valueMax: 150},
+    {name:'Entre 2h30 et 3h 🕒', valueMin: 150, valueMax: 180},
+    {name:'Plus de 3h 🕞', valueMin: 180, valueMax: 300},
 ]
+
 
 export const popularityOptions = [
-    {name:'Tout 🌐', valueMax:100000, valueMin:0},
-    {name:'Films très populaires 🌟', valueMax: 100000, valueMin:10000},
-    {name:'Films peu connus 🔍', valueMax: 5000, valueMin:0},
+    {name:'Tout 🌐', valueMin: 0, valueMax: 100000},
+    {name:'Films très populaires 🌟', valueMin: 10000, valueMax: 100000},
+    {name:'Films peu connus 🔍', valueMin: 0, valueMax: 5000},
 ]
 
+
 export const ratingsOptions = [
-    {name:'Tout 🎬' , valueMax:10, valueMin:0},
-    {name:"Chefs-d'œuvre 🏆" , valueMax: 10, valueMin:8},
-    {name:'Très bons films 👍' , valueMax: 8, valueMin:7},
-    {name:'Bons films 👌'  , valueMax: 7, valueMin:6},
-    {name:'Films moyens 🤷' , valueMax: 6, valueMin:4},
-    {name:'Navets 🥬' , valueMax: 4, valueMin:0},
+    {name:'Tout 🎬', valueMin: 0, valueMax: 10},
+    {name:"Chefs-d'œuvre 🏆", valueMin: 8, valueMax: 10},
+    {name:'Très bons films 👍', valueMin: 7, valueMax: 8},
+    {name:'Bons films 👌', valueMin: 6, valueMax: 7},
+    {name:'Films moyens 🤷', valueMin: 4, valueMax: 6},
+    {name:'Navets 🥬', valueMin: 0, valueMax: 4},
 ]
 
