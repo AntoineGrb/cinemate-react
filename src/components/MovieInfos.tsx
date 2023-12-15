@@ -102,7 +102,7 @@ const MovieInfos = ({originalTitle, language, releaseDate, runtime, actors, dire
             </Info>
             <Info>
                 <i className="fa-solid fa-user-group"></i>
-                <p><strong> Acteurs </strong> : {actors.length !== 0 && actors.map((actor, index) => ( <span> {actor.name}{index < 4 ? ',' : '...'} </span> ))} </p>
+                <p><strong> Acteurs </strong> : {actors.length !== 0 && actors.map((actor, index) => ( <span> {actor.name}{index < actors.length - 1 ? ',' : '...'} </span> ))} </p>
             </Info>
             <Resume> {overview} </Resume>
             {video && video.site && video.site === 'YouTube' && (
