@@ -11,17 +11,19 @@ const MovieContainer = styled.main`
     margin: auto;
     position: relative;
     top:-50px;
+    min-width:300px;
+    max-width: 1300px;
     @media (min-width: ${mediaSizes.smallscreen}) {
         width: 90%;
-        max-width: 1300px;
         position: relative;
         display: flex;
         gap: 50px;
         align-items: flex-start;
-        top:-180px;
+        top:-170px;
     }
 `
 
+//Contiendra le bouton retour Home (pour les écrans > 1000px) et les icones utilisateur
 const MoviePosterContainer = styled.div`
 
 `
@@ -35,6 +37,7 @@ const MoviePoster = styled.img`
 `
 
 const MovieContent = styled.section`
+    width:100%;
     padding: 0;
 `
 

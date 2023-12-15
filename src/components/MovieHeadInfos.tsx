@@ -6,20 +6,24 @@ import Tag  from './Tag.js'
 const MovieHeadInfosContainer = styled.div`
     width:100%;
 `
-//! Problème de style pour les grands titres -> le headInfos déborde.
 const Title = styled.h1`
-    max-width:100%;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 2rem;
-    // white-space: nowrap;    
-    // overflow: hidden;    
-    // text-overflow: ellipsis;
     margin-bottom: calc(${spacing} * 2);
+    width:100%;
     @media (min-width: ${mediaSizes.smallscreen}) {
         text-align: left;
         margin-top: 0;
-        font-size: 2.8rem;
+        font-size: 2.4rem;
+        max-width:550px; //Obligé de gérer le titre sur une ligne sinon ça casse la mise en page
+        white-space: nowrap;    
+        overflow: hidden;    
+        text-overflow: ellipsis;
+    }
+    @media (min-width: ${mediaSizes.largescreen}) {
+        max-width:950px;
+        font-size: 2.4rem;
     }
 
 `
@@ -69,7 +73,7 @@ const MovieHeadInfos = ({title, genres, releaseDate, rate}: MovieHeadInfosProps)
     return (
         <>  
             <MovieHeadInfosContainer>
-                <Title> {title} </Title>
+                <Title title={title}> {title} </Title>
                 <Subtitle>
                     <p> {releaseDate.substring(0,4)} </p>
                     <p> | </p>

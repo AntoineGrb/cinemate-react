@@ -13,17 +13,19 @@ const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
   }
 
+  html {
+    width:100%;
+  }
+
   body {
-      background-color: rgb(41, 37, 37);
+    background-color: rgb(41, 37, 37);
+    width:100%;
   }
 
-  .hidden { //Pour cacher les éléments
-      display: none !important;
+  #root {
+    width:100%;
   }
 
-  .fa-solid.hidden { //Ecraser le style de base de font-awesome pour gérer le display des icones
-      --fa-display:none;
-  }
 
   //Textes et polices
   h1, h2, p {
