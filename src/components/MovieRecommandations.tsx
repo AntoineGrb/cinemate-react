@@ -12,7 +12,7 @@ const Title = styled.h2`
 const RecommandationsList = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5%;
+    gap: 20px;
     @media (min-width: ${mediaSizes.phone}) {
         grid-template-columns: repeat(3,1fr);
     }

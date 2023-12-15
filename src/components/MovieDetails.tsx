@@ -43,12 +43,19 @@ interface MovieDetailsProps {
     release_date:string,
     runtime:number,
     vote_average:number,
+    actors:CreditProps[],
+    directors:CreditProps[],
     recommandations:RecommandationObjectProps[],
     video:VideoObjectProps | null
 }
 
 interface GenresProps {
     id:number,
+    name:string
+}
+
+interface CreditProps {
+    known_for_department:string,
     name:string
 }
 
@@ -62,7 +69,7 @@ interface VideoObjectProps {
     key:string
 }
 
-const MovieDetails = ({title, poster_path, original_language, original_title, genres, overview, release_date, runtime, vote_average, recommandations, video}: MovieDetailsProps) => {
+const MovieDetails = ({title, poster_path, original_language, original_title, genres, overview, release_date, runtime, vote_average, actors, directors, recommandations, video}: MovieDetailsProps) => {
 
     return (
         <>
@@ -70,7 +77,7 @@ const MovieDetails = ({title, poster_path, original_language, original_title, ge
                 <MoviePoster src={`https://image.tmdb.org/t/p/w780/${poster_path}`} />
                 <MovieContent>
                     <MovieHeadInfos title={title} genres={genres} releaseDate={release_date} rate={vote_average}/>
-                    <MovieInfos originalTitle={original_title} language={original_language} releaseDate={release_date} runtime={runtime} overview={overview} video={video}/>
+                    <MovieInfos originalTitle={original_title} language={original_language} releaseDate={release_date} runtime={runtime} actors={actors} directors={directors} overview={overview} video={video}/>
                     <MovieRecommandations recommandations={recommandations} />
                 </MovieContent>
             </MovieContainer>

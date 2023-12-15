@@ -14,15 +14,17 @@ const MoviePage = () => {
         movieId = 1;
     }
 
-    const {
+    const { //On récupère toutes les datas du hook
         movieDetails, 
         movieVideo, 
         movieRecommandations,
+        movieActors,
+        movieDirectors,
         fetchMovieDetails, 
         isLoading, 
         isError, 
         errorMessage
-    } = useFetchMovieDetails(movieId);
+    } = useFetchMovieDetails(movieId); //On passe l'id au hook
 
     useEffect(() => {
         if (movieId) {
@@ -41,7 +43,7 @@ const MoviePage = () => {
             {!isError && !isLoading && movieDetails && (
                     <>
                     <MovieHeader backdropPath={movieDetails?.backdrop_path} />
-                    <MovieDetails {...movieDetails} recommandations={movieRecommandations} video={movieVideo}/>
+                    <MovieDetails {...movieDetails} actors={movieActors} directors={movieDirectors} recommandations={movieRecommandations} video={movieVideo}/>
                     </>
                 )
             }

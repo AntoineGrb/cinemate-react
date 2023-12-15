@@ -50,8 +50,15 @@ interface MovieInfosProps {
     language:string,
     releaseDate:string,
     runtime:number,
+    actors:CreditProps[],
+    directors:CreditProps[],
     overview:string,
     video:VideoObjectProps | null
+}
+
+interface CreditProps {
+    known_for_department:string,
+    name:string
 }
 
 interface VideoObjectProps {
@@ -59,7 +66,7 @@ interface VideoObjectProps {
     key:string
 }
 
-const MovieInfos = ({originalTitle, language, releaseDate, runtime, overview, video}: MovieInfosProps) => {
+const MovieInfos = ({originalTitle, language, releaseDate, runtime, actors, directors, overview, video}: MovieInfosProps) => {
 
     //Obtenir le chemin vers la vidéo Youtube
     const getYoutubeUrl = () => {
@@ -91,11 +98,11 @@ const MovieInfos = ({originalTitle, language, releaseDate, runtime, overview, vi
             </Info>
             <Info>
                 <i className="fa-solid fa-user-tie"></i>
-                <p><strong> Réalisateur </strong> : Christopher Nolan </p>
+                <p><strong> Réalisateur </strong> : {directors[0].name} </p>
             </Info>
             <Info>
                 <i className="fa-solid fa-user-group"></i>
-                <p><strong> Acteurs </strong> : Leonardo Di Caprio, Joseph Gordon-Levitt, Cillian Murphy... </p>
+                <p><strong> Acteurs </strong> : {actors.map(actor => ( <span> {actor.name}, </span> ))}... </p>
             </Info>
             <Resume> {overview} </Resume>
             {video && video.site && video.site === 'YouTube' && (

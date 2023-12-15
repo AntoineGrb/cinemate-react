@@ -15,6 +15,11 @@ interface MovieDetailsProps {
     vote_average:number
 }
 
+interface CreditProps {
+    known_for_department:string,
+    name:string
+}
+
 interface GenresProps {
     id:number,
     name:string
@@ -25,7 +30,8 @@ const useFetchMovieDetails = (id:number) => {
     //Les states récupérés par les 4 calls API
     const [movieDetails, setMovieDetails] = useState<MovieDetailsProps | null>(null);
     const [movieVideo, setMovieVideo] = useState(null);
-    // const [movieCast, setMovieCast] = useState([]);
+    const [movieActors, setMovieActors] = useState<CreditProps[]>([]);
+    const [movieDirectors, setMovieDirectors] = useState<CreditProps[]>([]);
     const [movieRecommandations, setMovieRecommandations] = useState([])
     //Les states du fetch
     const [isLoading, setIsLoading] = useState(false);
@@ -47,22 +53,39 @@ const useFetchMovieDetails = (id:number) => {
         const urlDetails = `https://api.themoviedb.org/3/movie/${id}?language=fr`;
         const urlVideos = `https://api.themoviedb.org/3/movie/${id}/videos?language=fr`;
         const urlRecommandations = `https://api.themoviedb.org/3/movie/${id}/recommendations?language=fr&page=1`;
+        const urlCredits = `https://api.themoviedb.org/3/movie/${id}/credits?language=fr`
 
         try {            
             setIsLoading(true)
             setIsError(false);
 
-            const [responseDetails, responseVideo, responseRecommandations] = await Promise.all([
+            //Récupérer les données de l'API
+            const [responseDetails, responseVideo, responseRecommandations, responseCredits] = await Promise.all([
                 axios.get(urlDetails , options),
                 axios.get(urlVideos, options),
                 axios.get(urlRecommandations, options),
+                axios.get(urlCredits, options)
             ])
 
-            // const responseDetails = await axios.get(urlDetails , options);
-            
+            //Formater les données de l'API avant envoi vers les composants
+            const formatActorsData = (data: CreditProps[]) => {
+                const actors = data
+                    .filter((el) => el.known_for_department === 'Acting')
+                    .slice(0,5)
+                return actors
+            }
+
+            const formatDirectorData = (data: CreditProps[]) => {
+                const directors = data
+                    .filter((el) => el.known_for_department === 'Directing')
+                return directors
+            }
+
             setMovieDetails(responseDetails.data);
             setMovieVideo(responseVideo.data.results[0]);
-            setMovieRecommandations(responseRecommandations.data.results)
+            setMovieRecommandations(responseRecommandations.data.results);
+            setMovieActors(formatActorsData(responseCredits.data.cast));
+            setMovieDirectors(formatDirectorData(responseCredits.data.crew));
 
         } catch (error) {
             if (axios.isAxiosError(error)) { //On check si on récupère un objet d'erreur axios
@@ -83,7 +106,7 @@ const useFetchMovieDetails = (id:number) => {
         }
     }
 
-    return {movieDetails, movieVideo, movieRecommandations, fetchMovieDetails, isLoading, isError, errorMessage}
+    return {movieDetails, movieVideo, movieRecommandations, movieActors, movieDirectors, fetchMovieDetails, isLoading, isError, errorMessage}
 }
 
 export default useFetchMovieDetails
