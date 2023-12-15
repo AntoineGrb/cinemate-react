@@ -50,13 +50,29 @@ interface MovieInfosProps {
     language:string,
     releaseDate:string,
     runtime:number,
-    overview:string
+    overview:string,
+    video:VideoObjectProps | null
 }
 
-const MovieInfos = ({originalTitle, language, releaseDate, runtime, overview}: MovieInfosProps) => {
+interface VideoObjectProps {
+    site:string,
+    key:string
+}
+
+const MovieInfos = ({originalTitle, language, releaseDate, runtime, overview, video}: MovieInfosProps) => {
+
+    //Obtenir le chemin vers la vidéo Youtube
+    const getYoutubeUrl = () => {
+        if (video && video.site && video.site === 'YouTube') {
+            const youtubeBaseUrl = 'https://www.youtube.com/embed/'
+            const videoKey = video.key;
+            return youtubeBaseUrl + videoKey
+        }
+    }
 
     return (
         <>
+            {console.log(video)}
             <Info>
                 <i className="fa-solid fa-globe"></i>
                 <p><strong>Titre original </strong> : {originalTitle } </p>
@@ -82,9 +98,12 @@ const MovieInfos = ({originalTitle, language, releaseDate, runtime, overview}: M
                 <p><strong> Acteurs </strong> : Leonardo Di Caprio, Joseph Gordon-Levitt, Cillian Murphy... </p>
             </Info>
             <Resume> {overview} </Resume>
-            <Video>
-                <iframe src="https://www.youtube.com/embed/CPTIgILtna8?si=946PSC89U4On0Fi5" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-            </Video>
+            {video && video.site && video.site === 'YouTube' && (
+                <Video>
+                    <iframe src={getYoutubeUrl()} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                </Video>
+            )}
+            
         </>
     )
 }

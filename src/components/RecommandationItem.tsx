@@ -7,12 +7,16 @@ const Item = styled.article`
     }
 `
 
-const RecommandationItem = () => {
+interface RecommandationItemProps {
+    posterPath:string
+}
+
+const RecommandationItem = ({posterPath}: RecommandationItemProps) => {
     return (
         <>
             <Item>
                 <Link to={`/movie/1`}>
-                    <img src="/tests/inception-affiche.jpg" alt="" />
+                    <img src={`https://image.tmdb.org/t/p/w780/${posterPath}`} alt="" />
                 </Link>
             </Item>
         </>

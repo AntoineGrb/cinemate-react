@@ -21,15 +21,23 @@ const RecommandationsList = styled.div`
     }
 `
 
-const MovieRecommandations = () => {
+interface RecommandationsProps {
+    recommandations: RecommandationObjectProps[]
+}
+
+interface RecommandationObjectProps {
+    id:number,
+    poster_path:string
+}
+
+const MovieRecommandations = ({recommandations}: RecommandationsProps) => {
     return (
         <>
             <Title> Films recommandés </Title>
             <RecommandationsList>
-                <RecommandationItem />
-                <RecommandationItem />
-                <RecommandationItem />
-                <RecommandationItem />
+                {recommandations.map(reco => (
+                    <RecommandationItem key={reco.id} posterPath={reco.poster_path} />
+                ))}
             </RecommandationsList>
 
         </>

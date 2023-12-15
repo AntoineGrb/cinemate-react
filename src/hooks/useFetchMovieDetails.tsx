@@ -22,7 +22,12 @@ interface GenresProps {
 
 const useFetchMovieDetails = (id:number) => {
 
+    //Les states récupérés par les 4 calls API
     const [movieDetails, setMovieDetails] = useState<MovieDetailsProps | null>(null);
+    const [movieVideo, setMovieVideo] = useState(null);
+    // const [movieCast, setMovieCast] = useState([]);
+    const [movieRecommandations, setMovieRecommandations] = useState([])
+    //Les states du fetch
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
@@ -38,16 +43,26 @@ const useFetchMovieDetails = (id:number) => {
             }
         };
 
-        //L'URL de l'appel vers le endpoint movie
-        const url = `https://api.themoviedb.org/3/movie/${id}?language=fr`
+        //Les URL pour les 4 endpoints Details, Videos, Credits et Recommandations
+        const urlDetails = `https://api.themoviedb.org/3/movie/${id}?language=fr`;
+        const urlVideos = `https://api.themoviedb.org/3/movie/${id}/videos?language=fr`;
+        const urlRecommandations = `https://api.themoviedb.org/3/movie/${id}/recommendations?language=fr&page=1`;
 
         try {            
             setIsLoading(true)
             setIsError(false);
-            // await new Promise(resolve => setTimeout(resolve, 2000));
-            const apiResponse = await axios.get(url , options);
-            console.log('réponse API', apiResponse);
-            setMovieDetails(apiResponse.data);
+
+            const [responseDetails, responseVideo, responseRecommandations] = await Promise.all([
+                axios.get(urlDetails , options),
+                axios.get(urlVideos, options),
+                axios.get(urlRecommandations, options),
+            ])
+
+            // const responseDetails = await axios.get(urlDetails , options);
+            
+            setMovieDetails(responseDetails.data);
+            setMovieVideo(responseVideo.data.results[0]);
+            setMovieRecommandations(responseRecommandations.data.results)
 
         } catch (error) {
             if (axios.isAxiosError(error)) { //On check si on récupère un objet d'erreur axios
@@ -68,7 +83,7 @@ const useFetchMovieDetails = (id:number) => {
         }
     }
 
-    return {movieDetails, fetchMovieDetails, isLoading, isError, errorMessage}
+    return {movieDetails, movieVideo, movieRecommandations, fetchMovieDetails, isLoading, isError, errorMessage}
 }
 
 export default useFetchMovieDetails
