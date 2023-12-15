@@ -8,14 +8,15 @@ const Item = styled.article`
 `
 
 interface RecommandationItemProps {
+    id:number,
     posterPath:string
 }
 
-const RecommandationItem = ({posterPath}: RecommandationItemProps) => {
+const RecommandationItem = ({id, posterPath}: RecommandationItemProps) => {
     return (
         <>
             <Item>
-                <Link to={`/movie/1`}>
+                <Link to={`/movie/${id}`}>
                     <img src={`https://image.tmdb.org/t/p/w780/${posterPath}`} alt="" />
                 </Link>
             </Item>

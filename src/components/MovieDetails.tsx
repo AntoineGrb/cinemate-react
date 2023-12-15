@@ -1,12 +1,13 @@
 import styled from 'styled-components'
+import { useState, useEffect } from 'react'
 import {mediaSizes} from '../data/styleVariables.js'
-// import MoviePoster from './MoviePoster.js'
 import MovieHeadInfos from './MovieHeadInfos.js'
 import MovieInfos from './MovieInfos.js'
 import MovieRecommandations from './MovieRecommandations.js'
+import ButtonReturnHomePage from './ButtonReturnHomePage.js'
 
 const MovieContainer = styled.main`
-    width: 90%;
+    width: 93%;
     margin: auto;
     position: relative;
     top:-50px;
@@ -19,6 +20,10 @@ const MovieContainer = styled.main`
         align-items: flex-start;
         top:-180px;
     }
+`
+
+const MoviePosterContainer = styled.div`
+
 `
 
 const MoviePoster = styled.img`
@@ -71,10 +76,26 @@ interface VideoObjectProps {
 
 const MovieDetails = ({title, poster_path, original_language, original_title, genres, overview, release_date, runtime, vote_average, actors, directors, recommandations, video}: MovieDetailsProps) => {
 
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 1000)
+        }
+        window.addEventListener('resize' , handleResize)
+
+        return () => {
+            window.removeEventListener('resize' , handleResize)
+        }
+    },[])
+
     return (
         <>
             <MovieContainer>
-                <MoviePoster src={`https://image.tmdb.org/t/p/w780/${poster_path}`} />
+                <MoviePosterContainer>
+                    {!isMobile && <ButtonReturnHomePage />}
+                    <MoviePoster src={`https://image.tmdb.org/t/p/w780/${poster_path}`} />
+                </MoviePosterContainer>
                 <MovieContent>
                     <MovieHeadInfos title={title} genres={genres} releaseDate={release_date} rate={vote_average}/>
                     <MovieInfos originalTitle={original_title} language={original_language} releaseDate={release_date} runtime={runtime} actors={actors} directors={directors} overview={overview} video={video}/>

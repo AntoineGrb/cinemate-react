@@ -28,10 +28,8 @@ const MoviePage = () => {
 
     useEffect(() => {
         if (movieId) {
+            console.log('movieId : ' , movieId)
             fetchMovieDetails();
-            console.log(movieDetails);
-            console.log(movieRecommandations);
-            console.log(movieVideo)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[movieId])

@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
+import { formatActorsData, formatDirectorData, formatRecommandationsData } from "../utils/formatMovieData"
 
 interface MovieDetailsProps {
     title:string,
@@ -16,8 +17,14 @@ interface MovieDetailsProps {
 }
 
 interface CreditProps {
-    known_for_department:string,
-    name:string
+    known_for_department: string;
+    name: string;
+    // Ajoutez d'autres propriétés si nécessaires
+}
+
+interface RecommandationProps {
+    id:number,
+    poster_path:string
 }
 
 interface GenresProps {
@@ -32,7 +39,7 @@ const useFetchMovieDetails = (id:number) => {
     const [movieVideo, setMovieVideo] = useState(null);
     const [movieActors, setMovieActors] = useState<CreditProps[]>([]);
     const [movieDirectors, setMovieDirectors] = useState<CreditProps[]>([]);
-    const [movieRecommandations, setMovieRecommandations] = useState([])
+    const [movieRecommandations, setMovieRecommandations] = useState<RecommandationProps[]>([])
     //Les states du fetch
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
@@ -67,25 +74,11 @@ const useFetchMovieDetails = (id:number) => {
                 axios.get(urlCredits, options)
             ])
 
-            //Formater les données de l'API avant envoi vers les composants
-            const formatActorsData = (data: CreditProps[]) => {
-                const actors = data
-                    .filter((el) => el.known_for_department === 'Acting')
-                    .slice(0,5)
-                return actors
-            }
-
-            const formatDirectorData = (data: CreditProps[]) => {
-                const directors = data
-                    .filter((el) => el.known_for_department === 'Directing')
-                return directors
-            }
-
             setMovieDetails(responseDetails.data);
             setMovieVideo(responseVideo.data.results[0]);
-            setMovieRecommandations(responseRecommandations.data.results);
-            setMovieActors(formatActorsData(responseCredits.data.cast));
-            setMovieDirectors(formatDirectorData(responseCredits.data.crew));
+            setMovieRecommandations(formatRecommandationsData(responseRecommandations.data.results)); //On formate les données avant maj du state
+            setMovieActors(formatActorsData(responseCredits.data.cast)); //On formate les données avant maj du state
+            setMovieDirectors(formatDirectorData(responseCredits.data.crew)); //On formate les données avant maj du state
 
         } catch (error) {
             if (axios.isAxiosError(error)) { //On check si on récupère un objet d'erreur axios

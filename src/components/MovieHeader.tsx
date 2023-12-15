@@ -1,7 +1,10 @@
 import styled from 'styled-components'
 import {mediaSizes} from '../data/styleVariables.js'
+import ButtonReturnHomePage from '../components/ButtonReturnHomePage'
+import { useState, useEffect } from 'react'
 
 const HeaderBigScreens = styled.header`
+    position:relative;
     @media (min-width: ${mediaSizes.smallscreen}) {
         height: 500px;
         box-sizing: border-box;
@@ -37,6 +40,7 @@ interface MovieHeaderProps {
     backdropPath:string
 }
 
+//Gérer l'image de fond => mettre une image lambda si pas fournie par l'API
 const handleBackdropImage = (backdropPath: string | null): string => {
     if (backdropPath === null) {
         return 'https://media.gqmagazine.fr/photos/603e6a8da9360b0585bcbc6a/16:9/w_1920,c_limit/108387402';
@@ -47,9 +51,25 @@ const handleBackdropImage = (backdropPath: string | null): string => {
 
 const MovieHeader = ({backdropPath}: MovieHeaderProps) => {
 
+    //Ici le bouton retour à l'accueil ne sera affiché que pour le mobile. 
+    //Pour les écrans PC, il sera gérer au niveau du MoviePoster pour des problématiques d'alignement.
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 1000)
+        }
+        window.addEventListener('resize' , handleResize)
+
+        return () => {
+            window.removeEventListener('resize' , handleResize)
+        }
+    },[])
+
     return (
-        <>
+        <>  
             <HeaderBigScreens>
+                {isMobile && <ButtonReturnHomePage />}
                 <HeaderMobile backdropPath={backdropPath}> </HeaderMobile>
             </HeaderBigScreens>
         </>

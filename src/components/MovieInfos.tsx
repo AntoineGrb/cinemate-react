@@ -79,7 +79,6 @@ const MovieInfos = ({originalTitle, language, releaseDate, runtime, actors, dire
 
     return (
         <>
-            {console.log(video)}
             <Info>
                 <i className="fa-solid fa-globe"></i>
                 <p><strong>Titre original </strong> : {originalTitle } </p>
@@ -98,16 +97,16 @@ const MovieInfos = ({originalTitle, language, releaseDate, runtime, actors, dire
             </Info>
             <Info>
                 <i className="fa-solid fa-user-tie"></i>
-                <p><strong> Réalisateur </strong> : {directors[0].name} </p>
+                <p><strong> Réalisateur </strong> : {directors.length !== 0 && directors[0].name} </p>
             </Info>
             <Info>
                 <i className="fa-solid fa-user-group"></i>
-                <p><strong> Acteurs </strong> : {actors.map(actor => ( <span> {actor.name}, </span> ))}... </p>
+                <p><strong> Acteurs </strong> : {actors.length !== 0 && actors.map((actor, index) => ( <span> {actor.name}{index < 4 ? ',' : '...'} </span> ))} </p>
             </Info>
             <Resume> {overview} </Resume>
             {video && video.site && video.site === 'YouTube' && (
                 <Video>
-                    <iframe src={getYoutubeUrl()} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                    <iframe src={getYoutubeUrl()} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                 </Video>
             )}
             
