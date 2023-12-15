@@ -25,9 +25,6 @@ interface Range {
 
 const HomePage = () => {
 
-    //State liste des films
-    // const [movies, setMovies] = useState([]);
-
     //States appel API
     const [genre, setGenre] = useState<string>('');
     const [country, setCountry] = useState<string>('');
@@ -48,7 +45,7 @@ const HomePage = () => {
         popularityMax: popularity.valueMax,
         ratingMin:rating.valueMin,
         ratingMax:rating.valueMax
-    })
+    });
 
     return (
         <>

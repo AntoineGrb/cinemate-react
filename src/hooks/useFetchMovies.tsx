@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import axios from "axios"
 import { handleScrollAfterClick } from "../utils/handleScrollAfterClick"
+import { MoviesContext } from "../context/MoviesContext"
 
 interface useFetchMoviesProps {
     country: string, 
@@ -17,7 +18,12 @@ interface useFetchMoviesProps {
 
 const useFetchMovies = (params: useFetchMoviesProps) => {
 
-    const [movies, setMovies] = useState([]);
+    const context = useContext(MoviesContext)
+    if (!context) { //Si le contexte est null (ce qui signifirait qu'on est en dehors du provider), on lance une erreur
+        throw new Error('')
+    }
+    const {movies, setMovies} = context //De cette manière movies et setMovies n'ont pas de problème de type
+
     const [isLoading, setIsLoading] = useState(false);
     const [triggerScroll, setTriggerScroll] = useState(false);
     const [isError, setIsError] =useState(false);
