@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import {mediaSizes , spacing} from '../data/styleVariables.js'
 import { getFormattedLanguage } from '../utils/getFormattedLanguage.js'
+import { formatReleaseDate } from '../utils/formatReleaseDate.js'
 
 
 const Info = styled.div`
@@ -89,7 +90,7 @@ const MovieInfos = ({originalTitle, language, releaseDate, runtime, actors, dire
             </Info>
             <Info>
                 <i className="fa-regular fa-calendar-days"></i>
-                <p><strong> Date de sortie </strong> : {releaseDate} </p>
+                <p><strong> Date de sortie </strong> : {formatReleaseDate(releaseDate)} </p>
             </Info>
             <Info>
                 <i className="fa-regular fa-clock"></i>

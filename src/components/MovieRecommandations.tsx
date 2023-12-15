@@ -33,14 +33,16 @@ interface RecommandationObjectProps {
 const MovieRecommandations = ({recommandations}: RecommandationsProps) => {
     return (
         <>
-            {console.log(recommandations)}
-            <Title> Films recommandés </Title>
-            <RecommandationsList>
-                {recommandations.map(reco => (
-                    <RecommandationItem key={reco.id} id={reco.id} posterPath={reco.poster_path} />
-                ))}
-            </RecommandationsList>
-
+            {recommandations.length !== 0 && (
+                <> 
+                <Title> Films recommandés </Title>
+                <RecommandationsList>
+                    {recommandations.map(reco => (
+                        <RecommandationItem key={reco.id} id={reco.id} posterPath={reco.poster_path} />
+                    ))}
+                </RecommandationsList>
+                </>
+            )}
         </>
     )
 }

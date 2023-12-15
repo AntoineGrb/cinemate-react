@@ -9,6 +9,7 @@ interface RecommandationProps {
     poster_path:string
 }
 
+//Formater le tableau du cast
 export const formatActorsData = (data: CreditProps[]) => {
     const actors = data
         .filter((el) => el.known_for_department === 'Acting')
@@ -16,12 +17,14 @@ export const formatActorsData = (data: CreditProps[]) => {
     return actors
 }
 
+//Formater le tableau du crew
 export const formatDirectorData = (data: CreditProps[]) => {
     const directors = data
         .filter((el) => el.known_for_department === 'Directing')
     return directors
 }
 
+//Formater le tableau des recommandations
 export const formatRecommandationsData = (data: RecommandationProps[]) => {
     const recommandations = data
         .filter(el => el.poster_path !== null)
