@@ -119,7 +119,7 @@ const MovieCard = ({backdrop_path, genre_ids, id, original_language, release_dat
                             <Tag key={index} genre={genre}/>
                         ))}
                     </Tags>
-                    <CardIcons />
+                    <CardIcons movieId={id} />
                 </Content>
             </Card>
         </>
