@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import {colors, spacing} from '../data/styleVariables.js'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { UserContext } from '../context/UserContext.js'
 
 const IconsContainer = styled.div`
     display: flex;
@@ -28,25 +29,24 @@ interface UserIconsProps {
     movieId: number;
 }
 
-interface UserListObjectProps {
-    id:number,
-    isWished:boolean,
-    isLiked:boolean,
-    isDisliked:boolean
-}
-
 const UserIcons = ({movieId}: UserIconsProps) => {
-
-    //! Ajouter dans le contexte
-    const [userList, setUserList] = useState<UserListObjectProps[] | []>([]);
 
     const [movieWished, setMovieWished] = useState(false);
     const [movieLiked, setMovieLiked] = useState(false);
     const [movieDisliked, setMovieDisliked] = useState(false);
-
+    
+    //Récupération de la userList dans le contexte
+    const context = useContext(UserContext);
     useEffect(() => {
-        console.log(userList);
-    },[userList]);
+        console.log(context?.userList);
+    },[context]);
+
+    if (!context) {
+        // Gérer le cas où le contexte n'est pas disponible
+        console.error("UserContext non trouvé");
+        return null; // Ou toute autre gestion d'erreur appropriée
+    }
+    const { userList, setUserList } = context;
 
     const toggleWishedList = () => {
         //On déclare des constantes pour maj les statuts, sinon React n'a pas le temps de mettre à jour les states pour les utiliser au sein de la fonction
