@@ -40,6 +40,7 @@ const UserActionsContainer = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap:5px;
+    margin-top:calc(${spacing} * 3);
 `
 
 const UserAction = styled.p`

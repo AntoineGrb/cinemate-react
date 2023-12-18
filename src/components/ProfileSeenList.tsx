@@ -51,6 +51,7 @@ const IconContainer = styled.div`
     height:35px;
     border-radius:50px;
     background-color:white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `
 
 const Icon = styled.i`

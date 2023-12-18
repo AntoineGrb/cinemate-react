@@ -13,11 +13,12 @@ const Header = styled.header`
 `
 
 const HeaderMenu = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    min-height:50px;
     margin-bottom: calc(${spacing} * 4);
-    min-height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    gap:20px;
+    align-items: center;
 `
 
 const HeaderTitle = styled.h1`
@@ -58,8 +59,8 @@ const HomeHeader = () => {
         <>
             <Header>
                 <HeaderMenu>
-                    <ProfileIcon isMobile={isMobile}/>
                     <SearchBar isMobile={isMobile}/>
+                    <ProfileIcon isMobile={isMobile}/>
                 </HeaderMenu>
                 <HeaderTitle> Qu'est ce qu'on mate ce soir ? <img src="/assets/logo-popcorn.png" /> </HeaderTitle>
             </Header>
