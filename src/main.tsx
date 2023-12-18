@@ -5,6 +5,7 @@ import App from './App.tsx'
 
 import { createGlobalStyle } from 'styled-components'
 
+// eslint-disable-next-line react-refresh/only-export-components
 const GlobalStyle = createGlobalStyle`
   //Styles globaux
   * {

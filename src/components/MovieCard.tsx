@@ -4,7 +4,7 @@ import { getFormattedLanguage } from '../utils/getFormattedLanguage.js'
 import Tag from './Tag.js'
 import Rate from './Rate.js'
 import { Link } from 'react-router-dom'
-import CardIcons from './CardIcons.js'
+import UserIcons from './UserIcons.js'
 
 const Card = styled.article`
     margin-bottom: calc(${spacing} * 3);  
@@ -119,7 +119,7 @@ const MovieCard = ({backdrop_path, genre_ids, id, original_language, release_dat
                             <Tag key={index} genre={genre}/>
                         ))}
                     </Tags>
-                    <CardIcons movieId={id} />
+                    <UserIcons movieId={id} />
                 </Content>
             </Card>
         </>

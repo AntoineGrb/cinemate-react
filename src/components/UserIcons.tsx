@@ -24,7 +24,7 @@ const Icon = styled.i`
     }
 `
 
-interface CardIconsProps {
+interface UserIconsProps {
     movieId: number;
 }
 
@@ -35,8 +35,9 @@ interface UserListObjectProps {
     isDisliked:boolean
 }
 
-const CardIcons = ({movieId}: CardIconsProps) => {
+const UserIcons = ({movieId}: UserIconsProps) => {
 
+    //! Ajouter dans le contexte
     const [userList, setUserList] = useState<UserListObjectProps[] | []>([]);
 
     const [movieWished, setMovieWished] = useState(false);
@@ -155,4 +156,4 @@ const CardIcons = ({movieId}: CardIconsProps) => {
     )
 }
 
-export default CardIcons
+export default UserIcons
