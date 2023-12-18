@@ -8,6 +8,28 @@ const Info = styled.div`
     display: flex;
     gap:10px;
     align-items: baseline;
+    margin-bottom: ${spacing};
+    @media (min-width: ${mediaSizes.smallscreen}) {
+        margin-bottom: calc(${spacing} * 1.5);
+    }
+
+    i {
+        color:whitesmoke;
+        text-align: center;
+        width: 20px;
+    }
+
+    strong {
+        font-weight: 400;
+        text-transform: uppercase;
+    }
+`
+
+const Streaming = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap:10px;
     margin-bottom: 5px;
     @media (min-width: ${mediaSizes.smallscreen}) {
         margin-bottom: calc(${spacing} * 1.5);
@@ -104,6 +126,17 @@ const MovieInfos = ({originalTitle, language, releaseDate, runtime, actors, dire
                 <i className="fa-solid fa-user-group"></i>
                 <p><strong> Acteurs </strong> : {actors.length !== 0 && actors.map((actor, index) => ( <span> {actor.name}{index < actors.length - 1 ? ',' : '...'} </span> ))} </p>
             </Info>
+            <Streaming>
+                <i className="fa-solid fa-video"></i>
+                <p><strong> Streaming </strong> : </p>
+                <div>
+                    <img src="/assets/icons/icons8-amazon-prime-video-48.png" width='48px' alt="" />
+                    <img src="/assets/icons/icons8-apple-tv-48.png" width='48px' alt="" />
+                    <img src="/assets/icons/icons8-netflix-48.png" width='48px' alt="" />
+                    <img src="/assets/icons/icons8-primordial-plus-48.png" width='48px' alt="" />
+                    <img src="/assets/icons/icons8-disney-plus-48.png" width='48px' alt="" />
+                </div> 
+            </Streaming>
             <Resume> {overview} </Resume>
             {video && video.site && video.site === 'YouTube' && (
                 <Video>
