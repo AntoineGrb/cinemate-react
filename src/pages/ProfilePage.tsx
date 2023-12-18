@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { spacing, mediaSizes } from "../data/styleVariables"
+import ButtonReturnHomePage from "../components/ButtonReturnHomePage"
 import ProfileIcon from "../components/ProfileIcon"
 import ProfileUserInfos from "../components/ProfileUserInfos"
 import ProfileWishedList from "../components/ProfileWishedList"
@@ -59,6 +60,7 @@ const ProfilePage = () => {
         <>
             <ProfilePageContainer>
                 <ProfileHeader>
+                    <ButtonReturnHomePage />
                     <ProfileIcon isMobile={isMobile} />
                 </ProfileHeader>
                 <ProfileTitle> <span>🙋‍♂️</span> AntoineGrb <span>🙋‍♀️</span> </ProfileTitle>

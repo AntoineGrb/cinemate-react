@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 import { useState, useEffect } from 'react'
-import {mediaSizes} from '../data/styleVariables.js'
+import {mediaSizes , spacing} from '../data/styleVariables.js'
 import MovieHeadInfos from './MovieHeadInfos.js'
 import MovieInfos from './MovieInfos.js'
 import MovieRecommandations from './MovieRecommandations.js'
 import ButtonReturnHomePage from './ButtonReturnHomePage.js'
+import UserIcons from './UserIcons.js'
 
 const MovieContainer = styled.main`
     width: 93%;
@@ -41,7 +42,16 @@ const MovieContent = styled.section`
     padding: 0;
 `
 
+const UserIconsContainer = styled.div`
+    display:flex;
+    justify-content:center;
+    margin-bottom: calc(${spacing} * 4);
+    border-top:1px solid white;
+    padding-top:15px;
+`
+
 interface MovieDetailsProps {
+    id:number,
     title:string,
     poster_path:string,
     original_language:string,
@@ -77,7 +87,7 @@ interface VideoObjectProps {
     key:string
 }
 
-const MovieDetails = ({title, poster_path, original_language, original_title, genres, overview, release_date, runtime, vote_average, actors, directors, recommandations, video}: MovieDetailsProps) => {
+const MovieDetails = ({id, title, poster_path, original_language, original_title, genres, overview, release_date, runtime, vote_average, actors, directors, recommandations, video}: MovieDetailsProps) => {
 
     const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
 
@@ -98,9 +108,11 @@ const MovieDetails = ({title, poster_path, original_language, original_title, ge
                 <MoviePosterContainer>
                     {!isMobile && <ButtonReturnHomePage />}
                     <MoviePoster src={`https://image.tmdb.org/t/p/w780/${poster_path}`} />
+                    {/* <UserIcons movieId={id} posterPath={poster_path}/> */}
                 </MoviePosterContainer>
                 <MovieContent>
                     <MovieHeadInfos title={title} genres={genres} releaseDate={release_date} rate={vote_average}/>
+                    {isMobile && <UserIconsContainer> <UserIcons movieId={id} posterPath={poster_path}/> </UserIconsContainer>}
                     <MovieInfos originalTitle={original_title} language={original_language} releaseDate={release_date} runtime={runtime} actors={actors} directors={directors} overview={overview} video={video}/>
                     <MovieRecommandations recommandations={recommandations} />
                 </MovieContent>

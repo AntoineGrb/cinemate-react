@@ -5,6 +5,9 @@ import Tag  from './Tag.js'
 
 const MovieHeadInfosContainer = styled.div`
     width:100%;
+    @media (min-width: ${mediaSizes.smallscreen}) {
+        margin-bottom: calc(${spacing} * 6);
+    }
 `
 const Title = styled.h1`
     font-family: 'Roboto', sans-serif;
@@ -51,7 +54,7 @@ const Tags = styled.div`
     flex-wrap:wrap;
     justify-content: center;
     gap:${spacing};
-    margin-bottom: calc(${spacing} * 6);
+    margin-bottom: calc(${spacing} * 2);
     @media (min-width: ${mediaSizes.smallscreen}) {
         justify-content: flex-start;
     }
