@@ -7,6 +7,7 @@ interface UserContextProps {
 
 interface MovieListedProps {
     id:number,
+    posterPath:string,
     isWished:boolean,
     isLiked:boolean,
     isDisliked:boolean

@@ -79,12 +79,13 @@ interface MovieCardProps {
     genre_ids: number[],
     id:number,
     original_language:string,
+    poster_path:string,
     release_date:string,
     title:string,
     vote_average:number,
 }
 
-const MovieCard = ({backdrop_path, genre_ids, id, original_language, release_date, title, vote_average}: MovieCardProps) => {
+const MovieCard = ({backdrop_path, genre_ids, id, original_language, release_date, poster_path, title, vote_average}: MovieCardProps) => {
 
     //Gérer les backdrop_path null => mettre une image par défaut
     const handleBackdropImage = () => {
@@ -119,7 +120,7 @@ const MovieCard = ({backdrop_path, genre_ids, id, original_language, release_dat
                             <Tag key={index} genre={genre}/>
                         ))}
                     </Tags>
-                    <UserIcons movieId={id} />
+                    <UserIcons movieId={id} posterPath={poster_path} />
                 </Content>
             </Card>
         </>

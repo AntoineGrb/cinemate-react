@@ -24,6 +24,7 @@ interface MovieProps {
     genre_ids: number[],
     id:number,
     original_language:string,
+    poster_path:string,
     release_date:string,
     title:string,
     vote_average:number,

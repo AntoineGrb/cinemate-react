@@ -8,10 +8,6 @@ const IconsContainer = styled.div`
     gap: calc(${spacing} * 1.5);
     justify-content: flex-end;
     align-items:center;
-
-    .on {
-        color:lightgreen;
-    }
 `
 
 const Icon = styled.i`
@@ -20,16 +16,17 @@ const Icon = styled.i`
     cursor: pointer;
     min-width: 30px; //Pour éviter le déplcement des icones adjacentes lors du hover
 
-    &:hover {
-        // color:${colors.second};
+    &.on {
+        color:${colors.second};
     }
 `
 
 interface UserIconsProps {
-    movieId: number;
+    movieId: number,
+    posterPath:string,
 }
 
-const UserIcons = ({movieId}: UserIconsProps) => {
+const UserIcons = ({movieId, posterPath}: UserIconsProps) => {
     
     //Récupération du contexte 
     const { userList, setUserList } = useContext(UserContext);
@@ -60,6 +57,7 @@ const UserIcons = ({movieId}: UserIconsProps) => {
         //Créer l'objet film à ajouter
         const movieToAdd = {
             id:movieId,
+            posterPath,
             isWished:isWishedUpdated,
             isLiked:isLikedUpdated,
             isDisliked:isDislikedUpdated
@@ -90,6 +88,7 @@ const UserIcons = ({movieId}: UserIconsProps) => {
         //Créer l'objet film à ajouter
         const movieToAdd = {
             id:movieId,
+            posterPath,
             isWished:isWishedUpdated,
             isLiked:isLikedUpdated,
             isDisliked:isDislikedUpdated
@@ -120,6 +119,7 @@ const UserIcons = ({movieId}: UserIconsProps) => {
        //Créer l'objet film à ajouter
        const movieToAdd = {
            id:movieId,
+           posterPath,
            isWished:isWishedUpdated,
            isLiked:isLikedUpdated,
            isDisliked:isDislikedUpdated

@@ -1,5 +1,8 @@
 import styled from "styled-components"
 import { spacing, mediaSizes } from "../data/styleVariables"
+import { UserContext } from "../context/UserContext"
+import { useContext } from "react"
+import { Link } from "react-router-dom"
 
 const UserWishedListContainer = styled.section`
     margin-bottom: calc(${spacing} * 5);
@@ -25,20 +28,37 @@ const UserWishedList = styled.div`
         gap: 30px;
     }
 
-    img {
+    a {
+        display:flex;
         width: clamp(100px, 30%, 200px);
+    }
+
+    img {
+        width: 100%;
+        height:auto;
     }
 `
 
 const ProfileWishedList = () => {
+
+    const {userList} = useContext(UserContext);
+
+    const wishedList = () => {
+        return userList.filter(movie => movie.isWished)
+    }
+
     return (
         <>
             <UserWishedListContainer>
                 <UserWishedListTitle>Je veux voir ces films <i className="fa-solid fa-chevron-down"></i> </UserWishedListTitle>
                 <UserWishedList>
-                    <img src="/tests/inception-affiche.jpg" alt="affiche" />
-                    <img src="/tests/inception-affiche.jpg" alt="affiche" />
-                    <img src="/tests/inception-affiche.jpg" alt="affiche" />
+                    {wishedList().length > 0 
+                        ? wishedList().map(movie => (
+                                <Link key={movie.id} to={`/movie/${movie.id}`}>
+                                    <img src={`https://image.tmdb.org/t/p/w780/${movie.posterPath}`} alt="movie" />
+                                </Link>
+                            )) 
+                        : <p> Aucun film dans la liste... </p>}
                 </UserWishedList>
             </UserWishedListContainer>
         </>
