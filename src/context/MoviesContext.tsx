@@ -11,6 +11,7 @@ interface MovieProps {
     id:number,
     original_language:string,
     release_date:string,
+    poster_path:string,
     title:string,
     vote_average:number,
 }
