@@ -13,13 +13,19 @@ interface MovieListedProps {
 }
 
 // Création d'un contexte avec une valeur par défaut
-export const UserContext = createContext<UserContextProps | null>(null);
+export const UserContext = createContext<UserContextProps>({
+    userList:[],
+    setUserList:() => {}
+});
 
 // Passage des states au Provider
 export const UserProvider: React.FC<{ children: ReactNode }> = ({children} ) => {
 	
 	//Création des states
-	const [userList, setUserList] = useState<MovieListedProps[]>([]);
+	const [userList, setUserList] = useState<MovieListedProps[]>(() => {
+        const savedUserList = localStorage.getItem('userList');
+        return savedUserList ? JSON.parse(savedUserList) : [];
+    });
 
 	//Fournir le contexte aux enfants
 	return (

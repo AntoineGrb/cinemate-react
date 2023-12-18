@@ -30,23 +30,21 @@ interface UserIconsProps {
 }
 
 const UserIcons = ({movieId}: UserIconsProps) => {
-
-    const [movieWished, setMovieWished] = useState(false);
-    const [movieLiked, setMovieLiked] = useState(false);
-    const [movieDisliked, setMovieDisliked] = useState(false);
     
-    //Récupération de la userList dans le contexte
-    const context = useContext(UserContext);
-    useEffect(() => {
-        console.log(context?.userList);
-    },[context]);
+    //Récupération du contexte 
+    const { userList, setUserList } = useContext(UserContext);
 
-    if (!context) {
-        // Gérer le cas où le contexte n'est pas disponible
-        console.error("UserContext non trouvé");
-        return null; // Ou toute autre gestion d'erreur appropriée
-    }
-    const { userList, setUserList } = context;
+    useEffect(() => {
+        localStorage.setItem('userList' , JSON.stringify(userList));
+        console.log(localStorage.userList)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [userList]);
+
+    //Déclarer les states locaux
+    const currentMovie = userList.find(movie => movie.id === movieId);
+    const [movieWished, setMovieWished] = useState(currentMovie?.isWished || false );
+    const [movieLiked, setMovieLiked] = useState(currentMovie?.isLiked || false);
+    const [movieDisliked, setMovieDisliked] = useState(currentMovie?.isDisliked || false);
 
     const toggleWishedList = () => {
         //On déclare des constantes pour maj les statuts, sinon React n'a pas le temps de mettre à jour les states pour les utiliser au sein de la fonction

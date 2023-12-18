@@ -1,8 +1,8 @@
 import styled from "styled-components"
 import {spacing, colors} from '../data/styleVariables.js'
 const Button = styled.button`
-    width: clamp(50px , 80% , 500px);
-    padding: ${spacing};
+    width: clamp(50px , 50% , 400px);
+    padding: calc(${spacing}*1.2);
     border:none;
     border-radius: 20px;
     background-color: ${colors.elements};

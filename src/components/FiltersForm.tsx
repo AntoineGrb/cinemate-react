@@ -2,7 +2,6 @@ import styled from "styled-components"
 import {mediaSizes, spacing} from '../data/styleVariables.js'
 import { genresOptions , yearsOptions, countriesOptions, durationsOptions, popularityOptions, ratingsOptions } from "../data/filtersOptions.js"
 import ButtonGetList from "./ButtonGetList"
-import ButtonGetLucky from "./ButtonGetLucky"
 import Filter from "./Filter"
 
 
@@ -66,7 +65,6 @@ const FiltersForm = ({clickToFetch, setGenre, setYear, setCountry, setDuration, 
                 </FiltersInputs>
                 <FiltersButtons>
                     <ButtonGetList clickToFetch={clickToFetch} />
-                    <ButtonGetLucky clickToFetch={clickToFetch}/>
                 </FiltersButtons>
             </Filters>
         </>
