@@ -21,12 +21,12 @@ const Icon = styled.i`
     }
 `
 
-interface UserIconsProps {
+interface CardUserIcons {
     movieId: number,
     posterPath:string,
 }
 
-const UserIcons = ({movieId, posterPath}: UserIconsProps) => {
+const CardUserIcons = ({movieId, posterPath}: CardUserIcons) => {
     
     //Récupération du contexte 
     const { userList, setUserList } = useContext(UserContext);
@@ -154,4 +154,4 @@ const UserIcons = ({movieId, posterPath}: UserIconsProps) => {
     )
 }
 
-export default UserIcons
+export default CardUserIcons

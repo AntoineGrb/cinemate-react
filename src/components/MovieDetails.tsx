@@ -43,11 +43,15 @@ const MovieContent = styled.section`
 `
 
 const UserIconsContainer = styled.div`
-    display:flex;
-    justify-content:center;
-    margin-bottom: calc(${spacing} * 4);
+    margin-bottom: calc(${spacing} * 6);
     border-top:1px solid white;
     padding-top:15px;
+    display:flex;
+    justify-content:center;
+    @media (min-width: ${mediaSizes.smallscreen}) {
+        padding-top: calc(${spacing} * 2);
+        border-top:none;
+    }
 `
 
 interface MovieDetailsProps {
@@ -108,11 +112,11 @@ const MovieDetails = ({id, title, poster_path, original_language, original_title
                 <MoviePosterContainer>
                     {!isMobile && <ButtonReturnHomePage />}
                     <MoviePoster src={`https://image.tmdb.org/t/p/w780/${poster_path}`} />
-                    {/* <UserIcons movieId={id} posterPath={poster_path}/> */}
+                    {!isMobile && <UserIconsContainer> <UserIcons movieId={id} posterPath={poster_path} />  </UserIconsContainer>}
                 </MoviePosterContainer>
                 <MovieContent>
                     <MovieHeadInfos title={title} genres={genres} releaseDate={release_date} rate={vote_average}/>
-                    {isMobile && <UserIconsContainer> <UserIcons movieId={id} posterPath={poster_path}/> </UserIconsContainer>}
+                    {isMobile && <UserIconsContainer> <UserIcons movieId={id} posterPath={poster_path} />  </UserIconsContainer>}
                     <MovieInfos originalTitle={original_title} language={original_language} releaseDate={release_date} runtime={runtime} actors={actors} directors={directors} overview={overview} video={video}/>
                     <MovieRecommandations recommandations={recommandations} />
                 </MovieContent>
