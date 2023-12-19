@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import {spacing, colors} from '../data/styleVariables.js'
 const Button = styled.button`
-    width: clamp(50px , 50% , 400px);
+    width: clamp(50px , 70% , 400px);
     padding: calc(${spacing}*1.2);
     border:none;
     border-radius: 20px;

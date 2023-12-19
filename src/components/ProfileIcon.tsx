@@ -28,7 +28,7 @@ const ProfileIcon = ({isMobile}: ProfileIconProps) => {
            <Link to='/profile'>
                 <IconContainer>
                     <i className="fa-solid fa-user"></i>
-                    {!isMobile && <p className="" >Se connecter</p>}
+                    {!isMobile && <p className="" >Mon profil</p>}
                 </IconContainer>
            </Link> 
         </>

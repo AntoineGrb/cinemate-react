@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import {mediaSizes , spacing} from '../data/styleVariables.js'
 import { getFormattedLanguage } from '../utils/getFormattedLanguage.js'
 import { formatReleaseDate } from '../utils/formatReleaseDate.js'
+import { providersData } from '../data/providersData.js'
 
 
 const Info = styled.div`
@@ -76,7 +77,8 @@ interface MovieInfosProps {
     actors:CreditProps[],
     directors:CreditProps[],
     overview:string,
-    video:VideoObjectProps | null
+    video:VideoObjectProps | null,
+    providers: Providerprops[]
 }
 
 interface CreditProps {
@@ -89,8 +91,21 @@ interface VideoObjectProps {
     key:string
 }
 
-const MovieInfos = ({originalTitle, language, releaseDate, runtime, actors, directors, overview, video}: MovieInfosProps) => {
+interface Providerprops {
+    provider_id:number,
+    provider_name:string
+}
 
+const MovieInfos = ({originalTitle, language, releaseDate, runtime, actors, directors, overview, video, providers}: MovieInfosProps) => {
+
+    //Obtenir le logo des providers
+    const getProviderIcon = (providerId: number) => {
+        const providerToDisplay = providersData.find(provider => provider.id === providerId);
+        if (providerToDisplay) {
+            return providerToDisplay.icon
+        }  
+    }
+    
     //Obtenir le chemin vers la vidéo Youtube
     const getYoutubeUrl = () => {
         if (video && video.site && video.site === 'YouTube') {
@@ -130,12 +145,11 @@ const MovieInfos = ({originalTitle, language, releaseDate, runtime, actors, dire
                 <i className="fa-solid fa-video"></i>
                 <p><strong> Streaming </strong> : </p>
                 <div>
-                    <img src="/assets/icons/icons8-amazon-prime-video-48.png" width='48px' alt="" />
-                    <img src="/assets/icons/icons8-apple-tv-48.png" width='48px' alt="" />
-                    <img src="/assets/icons/icons8-netflix-48.png" width='48px' alt="" />
-                    <img src="/assets/icons/icons8-primordial-plus-48.png" width='48px' alt="" />
-                    <img src="/assets/icons/icons8-disney-plus-48.png" width='48px' alt="" />
-                </div> 
+                    {providers ? providers.map(provider => (
+                        <img src={getProviderIcon(provider.provider_id)} width='48px' alt="" />
+                    )) : <p> Non disponible en France </p>}
+                </div>
+                 
             </Streaming>
             <Resume> {overview} </Resume>
             {video && video.site && video.site === 'YouTube' && (

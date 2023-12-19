@@ -56,8 +56,8 @@ export const durationsOptions = [
 
 export const popularityOptions = [
     {name:'Tous 🌐', valueMin: 0, valueMax: 100000},
-    {name:'Films très populaires 🌟', valueMin: 10000, valueMax: 100000},
-    {name:'Films peu connus 🔍', valueMin: 0, valueMax: 5000},
+    {name:'Films très populaires 🌟', valueMin: 1000, valueMax: 100000},
+    {name:'Films peu connus 🔍', valueMin: 0, valueMax: 500},
 ]
 
 

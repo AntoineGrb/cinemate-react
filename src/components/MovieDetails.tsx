@@ -26,7 +26,6 @@ const MovieContainer = styled.main`
 
 //Contiendra le bouton retour Home (pour les écrans > 1000px) et les icones utilisateur
 const MoviePosterContainer = styled.div`
-
 `
 
 const MoviePoster = styled.img`
@@ -68,7 +67,8 @@ interface MovieDetailsProps {
     actors:CreditProps[],
     directors:CreditProps[],
     recommandations:RecommandationObjectProps[],
-    video:VideoObjectProps | null
+    video:VideoObjectProps | null,
+    providers: Providerprops[]
 }
 
 interface GenresProps {
@@ -91,7 +91,12 @@ interface VideoObjectProps {
     key:string
 }
 
-const MovieDetails = ({id, title, poster_path, original_language, original_title, genres, overview, release_date, runtime, vote_average, actors, directors, recommandations, video}: MovieDetailsProps) => {
+interface Providerprops {
+    provider_id:number,
+    provider_name:string
+}
+
+const MovieDetails = ({id, title, poster_path, original_language, original_title, genres, overview, release_date, runtime, vote_average, actors, directors, recommandations, video, providers}: MovieDetailsProps) => {
 
     const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
 
@@ -115,9 +120,26 @@ const MovieDetails = ({id, title, poster_path, original_language, original_title
                     {!isMobile && <UserIconsContainer> <UserIcons movieId={id} posterPath={poster_path} />  </UserIconsContainer>}
                 </MoviePosterContainer>
                 <MovieContent>
-                    <MovieHeadInfos title={title} genres={genres} releaseDate={release_date} rate={vote_average}/>
-                    {isMobile && <UserIconsContainer> <UserIcons movieId={id} posterPath={poster_path} />  </UserIconsContainer>}
-                    <MovieInfos originalTitle={original_title} language={original_language} releaseDate={release_date} runtime={runtime} actors={actors} directors={directors} overview={overview} video={video}/>
+                    <MovieHeadInfos 
+                        title={title} 
+                        genres={genres} 
+                        releaseDate={release_date} 
+                        rate={vote_average}
+                    />
+                    {isMobile && <UserIconsContainer> 
+                        <UserIcons movieId={id} posterPath={poster_path} />  
+                    </UserIconsContainer>}
+                    <MovieInfos 
+                        originalTitle={original_title} 
+                        language={original_language} 
+                        releaseDate={release_date} 
+                        runtime={runtime} 
+                        actors={actors} 
+                        directors={directors} 
+                        overview={overview} 
+                        video={video}
+                        providers={providers}
+                    />
                     <MovieRecommandations recommandations={recommandations} />
                 </MovieContent>
             </MovieContainer>

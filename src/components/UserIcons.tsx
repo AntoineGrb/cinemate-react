@@ -5,7 +5,7 @@ import { UserContext } from '../context/UserContext.js'
 
 const IconsContainer = styled.div`
     display: flex;
-    gap: calc(${spacing} * 1.5);
+    gap: calc(${spacing} * 2);
     justify-content: flex-end;
     align-items:center;
 `
@@ -18,6 +18,14 @@ const Icon = styled.i`
 
     &.on {
         color:${colors.second};
+    }
+
+    &:hover {
+        color:lightgrey;
+    }
+
+    &.on:hover {
+        color:${colors.secondHover};
     }
 `
 
@@ -33,7 +41,6 @@ const CardUserIcons = ({movieId, posterPath}: CardUserIcons) => {
 
     useEffect(() => {
         localStorage.setItem('userList' , JSON.stringify(userList));
-        console.log(localStorage.userList)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userList]);
 

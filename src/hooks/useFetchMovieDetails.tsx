@@ -16,6 +16,16 @@ interface MovieDetailsProps {
     vote_average:number
 }
 
+interface GenresProps {
+    id:number,
+    name:string
+}
+
+interface Providerprops {
+    provider_id:number,
+    provider_name:string
+}
+
 interface CreditProps {
     known_for_department: string;
     name: string;
@@ -27,10 +37,7 @@ interface RecommandationProps {
     poster_path:string
 }
 
-interface GenresProps {
-    id:number,
-    name:string
-}
+
 
 const useFetchMovieDetails = (id:number) => {
 
@@ -39,6 +46,7 @@ const useFetchMovieDetails = (id:number) => {
     const [movieVideo, setMovieVideo] = useState(null);
     const [movieActors, setMovieActors] = useState<CreditProps[]>([]);
     const [movieDirectors, setMovieDirectors] = useState<CreditProps[]>([]);
+    const [movieProviders, setMovieProviders] = useState<Providerprops[]>([]);
     const [movieRecommandations, setMovieRecommandations] = useState<RecommandationProps[]>([])
     //Les states du fetch
     const [isLoading, setIsLoading] = useState(false);
@@ -60,18 +68,20 @@ const useFetchMovieDetails = (id:number) => {
         const urlDetails = `https://api.themoviedb.org/3/movie/${id}?language=fr`;
         const urlVideos = `https://api.themoviedb.org/3/movie/${id}/videos?language=fr`;
         const urlRecommandations = `https://api.themoviedb.org/3/movie/${id}/recommendations?language=fr&page=1`;
-        const urlCredits = `https://api.themoviedb.org/3/movie/${id}/credits?language=fr`
+        const urlCredits = `https://api.themoviedb.org/3/movie/${id}/credits?language=fr`;
+        const urlProviders = `https://api.themoviedb.org/3/movie/${id}/watch/providers`;
 
         try {            
             setIsLoading(true)
             setIsError(false);
 
             //Récupérer les données de l'API
-            const [responseDetails, responseVideo, responseRecommandations, responseCredits] = await Promise.all([
+            const [responseDetails, responseVideo, responseRecommandations, responseCredits, responseProviders] = await Promise.all([
                 axios.get(urlDetails , options),
                 axios.get(urlVideos, options),
                 axios.get(urlRecommandations, options),
-                axios.get(urlCredits, options)
+                axios.get(urlCredits, options),
+                axios.get(urlProviders, options)
             ])
 
             setMovieDetails(responseDetails.data);
@@ -79,6 +89,7 @@ const useFetchMovieDetails = (id:number) => {
             setMovieRecommandations(formatRecommandationsData(responseRecommandations.data.results)); //On formate les données avant maj du state
             setMovieActors(formatActorsData(responseCredits.data.cast)); //On formate les données avant maj du state
             setMovieDirectors(formatDirectorData(responseCredits.data.crew)); //On formate les données avant maj du state
+            setMovieProviders(responseProviders.data.results.FR.flatrate);
 
         } catch (error) {
             if (axios.isAxiosError(error)) { //On check si on récupère un objet d'erreur axios
@@ -99,7 +110,7 @@ const useFetchMovieDetails = (id:number) => {
         }
     }
 
-    return {movieDetails, movieVideo, movieRecommandations, movieActors, movieDirectors, fetchMovieDetails, isLoading, isError, errorMessage}
+    return {movieDetails, movieVideo, movieRecommandations, movieActors, movieDirectors, movieProviders, fetchMovieDetails, isLoading, isError, errorMessage}
 }
 
 export default useFetchMovieDetails

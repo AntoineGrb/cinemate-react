@@ -20,6 +20,7 @@ const MoviePage = () => {
         movieRecommandations,
         movieActors,
         movieDirectors,
+        movieProviders,
         fetchMovieDetails, 
         isLoading, 
         isError, 
@@ -28,7 +29,6 @@ const MoviePage = () => {
 
     useEffect(() => {
         if (movieId) {
-            console.log('movieId : ' , movieId)
             fetchMovieDetails();
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,7 +41,14 @@ const MoviePage = () => {
             {!isError && !isLoading && movieDetails && (
                     <>
                     <MovieHeader backdropPath={movieDetails?.backdrop_path} />
-                    <MovieDetails {...movieDetails} actors={movieActors} directors={movieDirectors} recommandations={movieRecommandations} video={movieVideo}/>
+                    <MovieDetails 
+                        {...movieDetails} 
+                        actors={movieActors} 
+                        directors={movieDirectors} 
+                        recommandations={movieRecommandations} 
+                        video={movieVideo}
+                        providers={movieProviders}
+                    />
                     </>
                 )
             }
