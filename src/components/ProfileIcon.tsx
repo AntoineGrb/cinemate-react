@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import {spacing , colors} from '../data/styleVariables.ts'
+import {spacing , colors, mediaSizes} from '../data/styleVariables.ts'
 import styled from "styled-components"
 
 const IconContainer = styled.div`
@@ -9,11 +9,18 @@ const IconContainer = styled.div`
     cursor: pointer;
 
     i {
-        font-size:1.4rem;
+        font-size:1.2rem;
     }
 
     &:hover i , &:hover p {
         color:${colors.secondHover};
+    }
+
+    p {
+        font-size:1rem;
+        @media (min-width: ${mediaSizes.smallscreen}) {
+            font-size:1.1rem; 
+        }
     }
 `
 

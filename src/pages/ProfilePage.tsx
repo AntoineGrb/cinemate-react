@@ -1,6 +1,6 @@
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 import { spacing, mediaSizes } from "../data/styleVariables"
-import ButtonReturnHomePage from "../components/ButtonReturnHomePage"
 import ProfileIcon from "../components/ProfileIcon"
 import ProfileUserInfos from "../components/ProfileUserInfos"
 import ProfileWishedList from "../components/ProfileWishedList"
@@ -20,10 +20,32 @@ const ProfileHeader = styled.header`
     min-height: 50px;
     margin: calc(${spacing} * 4) auto;
     display:flex;
-    justify-content:flex-end;
+    justify-content:space-between;
     align-items:center;
     @media (min-width: ${mediaSizes.smallscreen}) {
         max-width: 100%;
+    }
+`
+
+const HomeButtonContainer = styled.div`
+    display:flex;
+    align-items:center;
+    gap: ${spacing};
+
+     p {
+        cursor: pointer;
+        font-size:1rem;
+        @media (min-width: ${mediaSizes.phone}) {
+            font-size:1.1rem; 
+        }
+    }
+`
+
+const HomeIcon = styled.i`
+    color:white;
+    font-size:1rem;
+    @media (min-width: ${mediaSizes.phone}) {
+        font-size:1rem; 
     }
 `
 
@@ -60,7 +82,11 @@ const ProfilePage = () => {
         <>
             <ProfilePageContainer>
                 <ProfileHeader>
-                    <ButtonReturnHomePage />
+                <Link to='/'>
+                    <HomeButtonContainer> 
+                        <HomeIcon className="fa-solid fa-chevron-left" /> <p>Accueil</p>
+                    </HomeButtonContainer> 
+                </Link>
                     <ProfileIcon isMobile={isMobile} />
                 </ProfileHeader>
                 <ProfileTitle> <span>🙋‍♂️</span> AntoineGrb <span>🙋‍♀️</span> </ProfileTitle>

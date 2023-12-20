@@ -107,6 +107,7 @@ const MovieInfos = ({originalTitle, language, releaseDate, runtime, actors, dire
     }
     
     //Obtenir le chemin vers la vidéo Youtube
+    //! Il ne faut récupérer que les icones que j'ai dans mon tableau ! Le reste non sinon espaces blancs en restit
     const getYoutubeUrl = () => {
         if (video && video.site && video.site === 'YouTube') {
             const youtubeBaseUrl = 'https://www.youtube.com/embed/'
