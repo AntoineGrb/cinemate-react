@@ -18,11 +18,7 @@ interface useFetchMoviesProps {
 
 const useFetchMovies = (params: useFetchMoviesProps) => {
 
-    const context = useContext(MoviesContext)
-    if (!context) { //Si le contexte est null (ce qui signifirait qu'on est en dehors du provider), on lance une erreur
-        throw new Error('')
-    }
-    const {movies, setMovies} = context //De cette manière movies et setMovies n'ont pas de problème de type
+    const {movies, setMovies} = useContext(MoviesContext) //De cette manière movies et setMovies n'ont pas de problème de type
 
     const [isLoading, setIsLoading] = useState(false);
     const [triggerScroll, setTriggerScroll] = useState(false);

@@ -17,7 +17,10 @@ interface MovieProps {
 }
 
 // Création d'un contexte avec une valeur par défaut
-export const MoviesContext = createContext<MoviesContextType | null>(null);
+export const MoviesContext = createContext<MoviesContextType>({
+    movies:[],
+    setMovies:() => {}
+});
 
 // Passage des states au Provider
 export const MoviesProvider: React.FC<{ children: ReactNode }> = ({children} ) => {

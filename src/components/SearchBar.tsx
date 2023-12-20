@@ -3,7 +3,7 @@ import {colors} from '../data/styleVariables.js'
 import { useState } from "react"
 import SearchResults from "./SearchResults.js"
 
-const SearchContainer = styled.div`
+const SearchContainer = styled.form`
     display: flex;
     gap: 5px;
     justify-content:flex-end;
@@ -40,25 +40,29 @@ interface SearchBarProps {
 
 const SearchBar = ({isMobile}: SearchBarProps) => {
 
-    const [isActive, setIsActive] = useState(false);
+    const [isInputActive, setIsInputActive] = useState(false);
+    const [searchResults, setSearchResults] = useState([
+        {id:111, title:'Batman', original_title:"Still Batman", poster_path:"/cij4dd21v2Rk2YtUQbV5kW69WB2.jpg", release_date:"1996-07-15"},
+        {id:112, title:'Batman 2', original_title:"Still Batman 2", poster_path:"/zzoPxWHnPa0eyfkMLgwbNvdEcVF.jpg", release_date:"1996-07-15"},
+        {id:112, title:'Batman 2', original_title:"Still Batman 2", poster_path:"/zzoPxWHnPa0eyfkMLgwbNvdEcVF.jpg", release_date:"1996-07-15"},])
 
     //Logique des rendus de la search bar 
     const renderMobileSearch = () => (
         <>
             <SearchInput type="text" placeholder="Rechercher un film..." />
-            <i onClick={() => setIsActive(false)} className="fa-solid fa-times"></i>
+            <i onClick={() => setIsInputActive(false)} className="fa-solid fa-times"></i>
         </>
     )
 
     const renderMobileGlassIcon = () => (
-        <i onClick={() => setIsActive(true)} className="fa-solid fa-magnifying-glass"></i>
+        <i onClick={() => setIsInputActive(true)} className="fa-solid fa-magnifying-glass"></i>
     )
 
     return (
         <>
             <SearchContainer> 
-                {isMobile ? (isActive ? renderMobileSearch() : renderMobileGlassIcon()) : <SearchInput type="text" placeholder="Rechercher un film..." />}
-                <SearchResults />
+                {isMobile ? (isInputActive ? renderMobileSearch() : renderMobileGlassIcon()) : <SearchInput type="text" placeholder="Rechercher un film..." />}
+                {searchResults.length > 0 && <SearchResults results={searchResults} />}
             </SearchContainer>
         </>
     )
