@@ -21,7 +21,7 @@ const SearchInput = styled.input`
     padding: 10px 15px;
     border-radius: 15px;
     border:1px solid ${colors.back};
-    width: clamp(200px, 100%, 900px);
+    width: clamp(200px, 100%, 700px);
     background-color: ${colors.elements};
     color:whitesmoke;
     transition: border-color 0.1s ease-out;
