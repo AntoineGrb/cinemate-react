@@ -98,16 +98,20 @@ interface Providerprops {
 
 const MovieInfos = ({originalTitle, language, releaseDate, runtime, actors, directors, overview, video, providers}: MovieInfosProps) => {
 
+    //Ne récupérer que les providers qui nous interesse (ceux présents dans la liste providersData) 
+
+
     //Obtenir le logo des providers
     const getProviderIcon = (providerId: number) => {
         const providerToDisplay = providersData.find(provider => provider.id === providerId);
         if (providerToDisplay) {
             return providerToDisplay.icon
-        }  
+        } else {
+            return null
+        }
     }
     
     //Obtenir le chemin vers la vidéo Youtube
-    //! Il ne faut récupérer que les icones que j'ai dans mon tableau ! Le reste non sinon espaces blancs en restit
     const getYoutubeUrl = () => {
         if (video && video.site && video.site === 'YouTube') {
             const youtubeBaseUrl = 'https://www.youtube.com/embed/'
@@ -146,9 +150,10 @@ const MovieInfos = ({originalTitle, language, releaseDate, runtime, actors, dire
                 <i className="fa-solid fa-video"></i>
                 <p><strong> Streaming </strong> : </p>
                 <div>
-                    {providers ? providers.map(provider => (
-                        <img src={getProviderIcon(provider.provider_id)} width='48px' alt="" />
-                    )) : <p> Non disponible en France </p>}
+                    {providers ? providers.map(provider => {
+                        const iconUrl = getProviderIcon(provider.provider_id);
+                        return iconUrl && <img src={iconUrl} width='48px' alt="" />
+                    }) : <p> Non disponible en France </p>}
                 </div>
                  
             </Streaming>

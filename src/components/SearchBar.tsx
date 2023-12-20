@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import {colors} from '../data/styleVariables.js'
 import { useState } from "react"
+import SearchResults from "./SearchResults.js"
 
 const SearchContainer = styled.div`
     display: flex;
@@ -8,6 +9,7 @@ const SearchContainer = styled.div`
     justify-content:flex-end;
     align-items: center;
     width:85%;
+    position:relative;
 
     i {
         font-size: 1.4rem;
@@ -16,9 +18,8 @@ const SearchContainer = styled.div`
 `
 
 const SearchInput = styled.input`
-    width:100%; 
     padding: 10px 15px;
-    border-radius: 16px;
+    border-radius: 15px;
     border:1px solid ${colors.back};
     width: clamp(200px, 100%, 900px);
     background-color: ${colors.elements};
@@ -57,6 +58,7 @@ const SearchBar = ({isMobile}: SearchBarProps) => {
         <>
             <SearchContainer> 
                 {isMobile ? (isActive ? renderMobileSearch() : renderMobileGlassIcon()) : <SearchInput type="text" placeholder="Rechercher un film..." />}
+                <SearchResults />
             </SearchContainer>
         </>
     )

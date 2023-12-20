@@ -29,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
 
 
   //Textes et polices
-  h1, h2, p {
+  h1, h2, h3, p {
       color:white;
       font-family: 'Roboto Condensed', sans-serif;
       font-weight: 300;
