@@ -18,7 +18,7 @@ interface useFetchMoviesProps {
 
 const useFetchMovies = (params: useFetchMoviesProps) => {
 
-    const {movies, setMovies} = useContext(MoviesContext) //De cette manière movies et setMovies n'ont pas de problème de type
+    const {movies, setMovies} = useContext(MoviesContext);
 
     const [isLoading, setIsLoading] = useState(false);
     const [triggerScroll, setTriggerScroll] = useState(false);

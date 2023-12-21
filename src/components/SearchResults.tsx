@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import {mediaSizes, spacing} from '../data/styleVariables.js'
+import { Link } from "react-router-dom"
 
 const SearchResultsContainer = styled.div`
     background-color:rgb(104, 98, 102);
@@ -14,7 +15,7 @@ const SearchResultsContainer = styled.div`
 
 const ResultItem = styled.article`
     width: 100%;
-    border-bottom: 1px solid white;
+    
     display:flex;
     justify-content: flex-start;
     align-items: center;
@@ -23,10 +24,6 @@ const ResultItem = styled.article`
     @media (min-width: ${mediaSizes.smallscreen}) {
         padding: 10px;
         gap:20px;
-    }
-
-    &:last-child {
-        border-bottom:none;
     }
 `
 
@@ -92,13 +89,15 @@ const SearchResults = ({results}: ResultsProps) => {
         <>
             <SearchResultsContainer>
                 {results.map(movie => (
-                    <ResultItem key={movie.id}>
-                        <ResultItemPoster> <img src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`} alt="movie" /> </ResultItemPoster>
-                        <ResultItemContent> 
-                            <h2> {movie.title} <span> ({movie.release_date.substring(0,4)}) </span>  </h2>
-                            <h3> {movie.original_title} </h3>
-                        </ResultItemContent>
-                    </ResultItem>
+                    <Link to={`movie/${movie.id}`}>
+                        <ResultItem key={movie.id}>
+                            <ResultItemPoster> <img src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`} alt="movie" /> </ResultItemPoster>
+                            <ResultItemContent> 
+                                <h2> {movie.title} <span> ({movie.release_date.substring(0,4)}) </span>  </h2>
+                                <h3> {movie.original_title} </h3>
+                            </ResultItemContent>
+                        </ResultItem>
+                    </Link>
                 ))}
                 
             </SearchResultsContainer>

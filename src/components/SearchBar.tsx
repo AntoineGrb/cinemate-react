@@ -2,6 +2,7 @@ import styled from "styled-components"
 import {colors} from '../data/styleVariables.js'
 import { useState } from "react"
 import SearchResults from "./SearchResults.js"
+import useFetchSearchedMovies from "../hooks/useFetchSearchedMovies.js"
 
 const SearchContainer = styled.form`
     display: flex;
@@ -41,12 +42,14 @@ interface SearchBarProps {
 const SearchBar = ({isMobile}: SearchBarProps) => {
 
     const [isInputActive, setIsInputActive] = useState(false);
-    const [searchResults, setSearchResults] = useState([
-        {id:111, title:'Batman', original_title:"Still Batman", poster_path:"/cij4dd21v2Rk2YtUQbV5kW69WB2.jpg", release_date:"1996-07-15"},
-        {id:112, title:'Batman 2', original_title:"Still Batman 2", poster_path:"/zzoPxWHnPa0eyfkMLgwbNvdEcVF.jpg", release_date:"1996-07-15"},
-        {id:112, title:'Batman 2', original_title:"Still Batman 2", poster_path:"/zzoPxWHnPa0eyfkMLgwbNvdEcVF.jpg", release_date:"1996-07-15"},])
+    const [query, setQuery] = useState<string>('')
+    const {searchedMovies} = useFetchSearchedMovies(query);
 
-    //Logique des rendus de la search bar 
+    const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setQuery(e.target.value);
+    }
+
+    //Afficher/masquer l'input en fonction de la taille de l'écran 
     const renderMobileSearch = () => (
         <>
             <SearchInput type="text" placeholder="Rechercher un film..." />
@@ -61,8 +64,15 @@ const SearchBar = ({isMobile}: SearchBarProps) => {
     return (
         <>
             <SearchContainer> 
-                {isMobile ? (isInputActive ? renderMobileSearch() : renderMobileGlassIcon()) : <SearchInput type="text" placeholder="Rechercher un film..." />}
-                {searchResults.length > 0 && <SearchResults results={searchResults} />}
+                {isMobile ? 
+                    (isInputActive ? renderMobileSearch() : renderMobileGlassIcon()) : 
+                    <SearchInput 
+                        value={query} 
+                        onChange={handleQueryChange} 
+                        type="text" 
+                        placeholder="Rechercher un film..." 
+                    />}
+                {searchedMovies.length > 0 && <SearchResults results={searchedMovies} />}
             </SearchContainer>
         </>
     )
