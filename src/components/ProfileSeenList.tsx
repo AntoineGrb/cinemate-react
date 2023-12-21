@@ -1,8 +1,9 @@
 import styled from "styled-components"
 import { spacing, mediaSizes, colors } from "../data/styleVariables"
 import { UserContext } from "../context/UserContext"
-import { useContext } from "react"
+import { useState, useContext } from "react"
 import { Link } from "react-router-dom"
+import ReactPaginate from "react-paginate"
 
 const UserSeenListContainer = styled.section`
     margin-bottom: calc(${spacing} * 5);
@@ -66,12 +67,24 @@ const Icon = styled.i`
     }
 `
 
+const ITEMS_PER_PAGE = 5; //Nb items pagination
+
 const ProfileSeenList = () => {
 
     const {userList} = useContext(UserContext);
+    const [currentPage, setCurrentPage] = useState(0);
 
-    const seenList = () => {
-        return userList.filter(movie => movie.isLiked || movie.isDisliked)
+    const seenList = userList.filter(movie => movie.isLiked || movie.isDisliked);
+
+    //Calculer les films à afficher sur la currentPage
+    const displayedMovies = seenList.slice(
+        currentPage * ITEMS_PER_PAGE,
+        (currentPage + 1 ) * ITEMS_PER_PAGE
+    );
+
+    //Gestion changement de page
+    const handlePageClick = (e: {selected: number}) => {
+        setCurrentPage(e.selected);
     }
 
     return (
@@ -79,8 +92,8 @@ const ProfileSeenList = () => {
             <UserSeenListContainer>
                 <UserSeenListTitle>J'ai vu ces films <i className="fa-solid fa-chevron-down"></i> </UserSeenListTitle>
                 <UserSeenList>
-                    {seenList().length > 0 
-                        ? seenList().map(movie => (
+                    {displayedMovies.length > 0 ? ( 
+                         displayedMovies.map(movie => (
                                 <Movie>
                                     <Link key={movie.id} to={`/movie/${movie.id}`}>
                                         <img key={movie.id} src={`https://image.tmdb.org/t/p/w780/${movie.posterPath}`} alt="movie" />
@@ -89,8 +102,19 @@ const ProfileSeenList = () => {
                                     </Link>
                                 </Movie>
                             )) 
-                        : <p> Aucun film dans la liste... </p>}
+                    ) : <p> Aucun film dans la liste... </p>}
                 </UserSeenList>
+                <ReactPaginate 
+                    previousLabel={"Précédent"}
+                    nextLabel={"Suivant"}
+                    breakLabel={"..."}
+                    pageCount={Math.ceil(seenList.length) / ITEMS_PER_PAGE}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={handlePageClick}
+                    containerClassName={"pagination"}
+                    activeClassName={"active"}
+                />
             </UserSeenListContainer>
         </>
     )
