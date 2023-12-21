@@ -2,7 +2,7 @@ import '../styles/paginate-container.scss'
 import styled from "styled-components"
 import { spacing, mediaSizes } from "../data/styleVariables"
 import { UserContext } from "../context/UserContext"
-import { useContext, useState } from "react"
+import { useContext, useState , useEffect } from "react"
 import { Link } from "react-router-dom"
 import ReactPaginate from "react-paginate"
 
@@ -24,36 +24,54 @@ const UserWishedListTitle = styled.h2`
 
 const UserWishedList = styled.div`
     display: flex;
-    gap: 10px;
+    gap: 15px;
     flex-wrap: wrap;
     @media (min-width: ${mediaSizes.tablet}) {
         gap: 30px;
     }
 
-    a {
-        display:flex;
-        width: clamp(100px, 30%, 200px);
-    }
-
     img {
         width: 100%;
-        height:auto;
+    }
+
+    p {
+        margin-bottom: calc(${spacing} * 2.5);
     }
 `
 
-const ITEMS_PER_PAGE = 5; //Nb items pagination
+const Movie = styled.div`
+    position:relative;
+    width: clamp(100px, 30%, 200px);
+    @media (min-width: ${mediaSizes.smallscreen}) {
+        width: clamp(100px, 17%, 200px);
+    }
+`
 
 const ProfileWishedList = () => {
 
     const {userList} = useContext(UserContext);
     const [currentPage, setCurrentPage] = useState(0);
+    const [itemsPerPage, setItemsPerPage] = useState(3); //Le nb d'items par page, variable en fonction de la width de l'écran 
+
+    const updateItemsPerPage = () => {
+        const screenWidth = window.innerWidth;
+        screenWidth < 1000 ? setItemsPerPage(3) : setItemsPerPage(5);
+    }
+
+    useEffect(() => {
+        updateItemsPerPage();
+        window.addEventListener("resize", updateItemsPerPage);
+        return () => {
+            window.removeEventListener("resize", updateItemsPerPage);
+        }
+    }, [])
 
     const wishedList = userList.filter(movie => movie.isWished)
 
     //Calculer les films à afficher sur la currentPage
     const displayedMovies = wishedList.slice(
-        currentPage * ITEMS_PER_PAGE,
-        (currentPage + 1 ) * ITEMS_PER_PAGE
+        currentPage * itemsPerPage,
+        (currentPage + 1 ) * itemsPerPage
     );
 
     //Gestion changement de page
@@ -68,9 +86,11 @@ const ProfileWishedList = () => {
                 <UserWishedList>
                     {displayedMovies.length > 0 ? (
                          displayedMovies.map(movie => (
-                                <Link key={movie.id} to={`/movie/${movie.id}`}>
-                                    <img src={`https://image.tmdb.org/t/p/w780/${movie.posterPath}`} alt="movie" />
-                                </Link>
+                                <Movie>
+                                    <Link key={movie.id} to={`/movie/${movie.id}`}>
+                                        <img src={`https://image.tmdb.org/t/p/w780/${movie.posterPath}`} alt="movie" />
+                                    </Link>
+                                </Movie>
                             )) 
                     ) : ( <p> Aucun film dans la liste... </p> )}
                 </UserWishedList>
@@ -78,7 +98,7 @@ const ProfileWishedList = () => {
                     previousLabel={"Précédent"}
                     nextLabel={"Suivant"}
                     breakLabel={"..."}
-                    pageCount={Math.ceil(wishedList.length) / ITEMS_PER_PAGE}
+                    pageCount={Math.ceil(wishedList.length) / itemsPerPage}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={handlePageClick}

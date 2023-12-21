@@ -89,7 +89,9 @@ const useFetchMovieDetails = (id:number) => {
             setMovieRecommandations(formatRecommandationsData(responseRecommandations.data.results)); //On formate les données avant maj du state
             setMovieActors(formatActorsData(responseCredits.data.cast)); //On formate les données avant maj du state
             setMovieDirectors(formatDirectorData(responseCredits.data.crew)); //On formate les données avant maj du state
-            setMovieProviders(responseProviders.data.results.FR.flatrate);
+            if (responseProviders.data.results.FR) { // Ne mettre à jour que si le flatrate existe
+                setMovieProviders(responseProviders.data.results.FR.flatrate);
+            }
 
         } catch (error) {
             if (axios.isAxiosError(error)) { //On check si on récupère un objet d'erreur axios

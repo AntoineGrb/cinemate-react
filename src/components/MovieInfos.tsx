@@ -150,7 +150,7 @@ const MovieInfos = ({originalTitle, language, releaseDate, runtime, actors, dire
                 <i className="fa-solid fa-video"></i>
                 <p><strong> Streaming </strong> : </p>
                 <div>
-                    {providers ? providers.map(provider => {
+                    {providers.length > 0 ? providers.map(provider => {
                         const iconUrl = getProviderIcon(provider.provider_id);
                         return iconUrl && <img src={iconUrl} width='48px' alt="" />
                     }) : <p> Non disponible en France </p>}

@@ -4,25 +4,39 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 10px;
     margin-top: 20px;
+    @media (min-width: 768px) {
+        gap: 15px;
+    }
 
     li {
         list-style: none;
         cursor: pointer;
-        padding: 4px 8px;
+        padding: 2px 6px;
         border-radius: 5px;
         background-color: rgba(248, 240, 251, 0.3);
-        border: 2px solid rgba(248, 240, 251, 0.3);
+        border: 1px solid rgba(248, 240, 251, 0.3);
+        @media (min-width: 768px) {
+            padding: 4px 8px;
+            border: 2px solid rgba(248, 240, 251, 0.3);
+        }
 
         &.active {
-            border: 2px solid white;
+            border: 1px solid white;
+            @media (min-width: 768px) {
+                border: 2px solid white;
+            }
         }
 
         a {
             color:white;
             font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
+            font-size: .8rem;
+            @media (min-width: 768px) { //Format tablet
+                font-size: 0.9rem;
+            }
         }
     }
 }
