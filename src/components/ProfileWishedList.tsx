@@ -1,8 +1,10 @@
+import '../styles/paginate-container.scss'
 import styled from "styled-components"
 import { spacing, mediaSizes } from "../data/styleVariables"
 import { UserContext } from "../context/UserContext"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
+import ReactPaginate from "react-paginate"
 
 const UserWishedListContainer = styled.section`
     margin-bottom: calc(${spacing} * 5);
@@ -39,12 +41,24 @@ const UserWishedList = styled.div`
     }
 `
 
+const ITEMS_PER_PAGE = 5; //Nb items pagination
+
 const ProfileWishedList = () => {
 
     const {userList} = useContext(UserContext);
+    const [currentPage, setCurrentPage] = useState(0);
 
-    const wishedList = () => {
-        return userList.filter(movie => movie.isWished)
+    const wishedList = userList.filter(movie => movie.isWished)
+
+    //Calculer les films à afficher sur la currentPage
+    const displayedMovies = wishedList.slice(
+        currentPage * ITEMS_PER_PAGE,
+        (currentPage + 1 ) * ITEMS_PER_PAGE
+    );
+
+    //Gestion changement de page
+    const handlePageClick = (e: {selected: number}) => {
+        setCurrentPage(e.selected);
     }
 
     return (
@@ -52,14 +66,26 @@ const ProfileWishedList = () => {
             <UserWishedListContainer>
                 <UserWishedListTitle>Je veux voir ces films <i className="fa-solid fa-chevron-down"></i> </UserWishedListTitle>
                 <UserWishedList>
-                    {wishedList().length > 0 
-                        ? wishedList().map(movie => (
+                    {displayedMovies.length > 0 ? (
+                         displayedMovies.map(movie => (
                                 <Link key={movie.id} to={`/movie/${movie.id}`}>
                                     <img src={`https://image.tmdb.org/t/p/w780/${movie.posterPath}`} alt="movie" />
                                 </Link>
                             )) 
-                        : <p> Aucun film dans la liste... </p>}
+                    ) : ( <p> Aucun film dans la liste... </p> )}
                 </UserWishedList>
+                <ReactPaginate 
+                    previousLabel={"Précédent"}
+                    nextLabel={"Suivant"}
+                    breakLabel={"..."}
+                    pageCount={Math.ceil(wishedList.length) / ITEMS_PER_PAGE}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={handlePageClick}
+                    containerClassName={"pagination"}
+                    activeClassName={"active"}
+                />
+
             </UserWishedListContainer>
         </>
     )
