@@ -144,15 +144,15 @@ const MovieInfos = ({originalTitle, language, releaseDate, runtime, actors, dire
             </Info>
             <Info>
                 <i className="fa-solid fa-user-group"></i>
-                <p><strong> Acteurs </strong> : {actors.length !== 0 && actors.map((actor, index) => ( <span> {actor.name}{index < actors.length - 1 ? ',' : '...'} </span> ))} </p>
+                <p><strong> Acteurs </strong> : {actors.length !== 0 && actors.map((actor, index) => ( <span key={index}> {actor.name}{index < actors.length - 1 ? ',' : '...'} </span> ))} </p>
             </Info>
             <Streaming>
                 <i className="fa-solid fa-video"></i>
                 <p><strong> Streaming </strong> : </p>
                 <div>
-                    {providers.length > 0 ? providers.map(provider => {
+                    {providers && providers.length > 0 ? providers.map(provider => {
                         const iconUrl = getProviderIcon(provider.provider_id);
-                        return iconUrl && <img src={iconUrl} width='48px' alt="" />
+                        return iconUrl && <img key={provider.provider_id} src={iconUrl} width='48px' alt="" />
                     }) : <p> Non disponible en France </p>}
                 </div>
                  

@@ -12,10 +12,10 @@ const HeaderBigScreens = styled.header`
     }
 `
 
-const HeaderMobile = styled.header<{ backdropPath: string | null }>`
+const HeaderMobile = styled.header<{ $backdropPath: string | null }>`
     height: 300px;
     margin: auto;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .1), rgba(41, 37, 37, 1)), url(${props => handleBackdropImage(props.backdropPath)});
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .1), rgba(41, 37, 37, 1)), url(${props => handleBackdropImage(props.$backdropPath)});
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
@@ -30,7 +30,7 @@ const HeaderMobile = styled.header<{ backdropPath: string | null }>`
                 rgba(0, 0, 0, 0.5) 70%,
                 rgba(0, 0, 0, 1) 95%),
             linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-            url(${props => handleBackdropImage(props.backdropPath)}); 
+            url(${props => handleBackdropImage(props.$backdropPath)}); 
         background-size: contain; 
         background-position: center; 
     }
@@ -70,7 +70,7 @@ const MovieHeader = ({backdropPath}: MovieHeaderProps) => {
         <>  
             <HeaderBigScreens>
                 {isMobile && <ButtonReturnHomePage />}
-                <HeaderMobile backdropPath={backdropPath}> </HeaderMobile>
+                <HeaderMobile $backdropPath={backdropPath}> </HeaderMobile>
             </HeaderBigScreens>
         </>
     )

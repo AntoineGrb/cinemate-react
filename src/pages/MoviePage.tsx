@@ -36,8 +36,8 @@ const MoviePage = () => {
 
     return (
         <>
-            {isError && <Error message={errorMessage} isFullScreen={true}/>}
-            {!isError && isLoading && <Loader isFullScreen={true}/>}
+            {isError && <Error message={errorMessage} $isFullScreen={true}/>}
+            {!isError && isLoading && <Loader $isFullScreen={true}/>}
             {!isError && !isLoading && movieDetails && (
                     <>
                     <MovieHeader backdropPath={movieDetails?.backdrop_path} />

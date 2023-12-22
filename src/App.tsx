@@ -17,7 +17,7 @@ const App = () => {
                         <Route path='/' element={<HomePage />} />
                         <Route path='/movie/:id' element={<MoviePage />} />
                         <Route path='/profile' element={<ProfilePage />} />
-                        <Route path='*' element={<Error message="La page n'existe pas" isFullScreen={true} />} />
+                        <Route path='*' element={<Error message="La page n'existe pas" $isFullScreen={true} />} />
                     </Routes>
 
                 </MoviesProvider>

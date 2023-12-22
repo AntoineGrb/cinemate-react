@@ -6,7 +6,7 @@ const LoaderContainer = styled.div<LoaderProps>`
     justify-content:center;
     align-items:center;
     width:100%;
-    height:${props => props.isFullScreen && '100vh'};
+    height:${props => props.$isFullScreen && '100vh'};
 `
 
 const rotate = keyframes`
@@ -45,13 +45,13 @@ const Spinner = styled.span`
 `
 
 interface LoaderProps {
-    isFullScreen:boolean
+    $isFullScreen:boolean
 }
 
-const Loader = ({isFullScreen}: LoaderProps) => {
+const Loader = ({$isFullScreen}: LoaderProps) => {
     return (
         <>  
-            <LoaderContainer isFullScreen={isFullScreen}> 
+            <LoaderContainer $isFullScreen={$isFullScreen}> 
                 <Spinner />
             </LoaderContainer>
         </>

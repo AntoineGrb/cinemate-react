@@ -61,12 +61,9 @@ const HomePage = () => {
                         setPopularity={setPopularity}
                         setRating={setRating}
                     />
-                    {isError && <Error message='Erreur lors du chargement des films' isFullScreen={false} />}
-                    {isLoading && !isError && <Loader isFullScreen={false}/>}
-                    {!isLoading && !isError && movies.length > 0 ? 
-                        <MoviesList movies={movies} />  : 
-                        <p style={{textAlign: 'center'}}> Aucun film ne correspond aux critères ! </p>
-                    }
+                    {isError && <Error message='Erreur lors du chargement des films' $isFullScreen={false} />}
+                    {isLoading && !isError && <Loader $isFullScreen={false}/>}
+                    {!isLoading && !isError && <MoviesList movies={movies} />}
                     <Footer />
                 </main>
             </HomePageContainer>

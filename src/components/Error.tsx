@@ -5,7 +5,7 @@ const ErrorContainer = styled.div<ErrorContainerProps>`
     justify-content:center;
     align-items:center;
     width:100%;
-    height:${props => props.isFullScreen && '100vh'};
+    height:${props => props.$isFullScreen && '100vh'};
 `
 
 const ErrorMessage = styled.p`
@@ -14,17 +14,17 @@ const ErrorMessage = styled.p`
 
 interface ErrorProps {
     message:string,
-    isFullScreen:boolean
+    $isFullScreen:boolean
 }
 
 interface ErrorContainerProps {
-    isFullScreen: boolean;
+    $isFullScreen: boolean;
 }
 
-const Error = ({message, isFullScreen}: ErrorProps) => {
+const Error = ({message, $isFullScreen}: ErrorProps) => {
     return (
         <>  
-            <ErrorContainer isFullScreen={isFullScreen}> 
+            <ErrorContainer $isFullScreen={$isFullScreen}> 
                 <ErrorMessage> {message} </ErrorMessage>
             </ErrorContainer>
         </>
