@@ -91,7 +91,12 @@ const SearchResults = ({results}: ResultsProps) => {
                 {results.map(movie => (
                     <Link key={movie.id} to={`movie/${movie.id}`}>
                         <ResultItem key={movie.id}>
-                            <ResultItemPoster> <img src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`} alt="movie" /> </ResultItemPoster>
+                            <ResultItemPoster> 
+                                {movie.poster_path ? 
+                                    <img src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`} alt="movie" /> : 
+                                    <img src={`/assets/empty-poster.png`} alt="movie" /> } 
+                                
+                            </ResultItemPoster>
                             <ResultItemContent> 
                                 <h2> {movie.title} <span> ({movie.release_date.substring(0,4)}) </span>  </h2>
                                 <h3> {movie.original_title} </h3>
