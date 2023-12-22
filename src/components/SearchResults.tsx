@@ -89,7 +89,7 @@ const SearchResults = ({results}: ResultsProps) => {
         <>
             <SearchResultsContainer>
                 {results.map(movie => (
-                    <Link to={`movie/${movie.id}`}>
+                    <Link key={movie.id} to={`movie/${movie.id}`}>
                         <ResultItem key={movie.id}>
                             <ResultItemPoster> <img src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`} alt="movie" /> </ResultItemPoster>
                             <ResultItemContent> 

@@ -49,29 +49,52 @@ const SearchBar = ({isMobile}: SearchBarProps) => {
         setQuery(e.target.value);
     }
 
-    //Afficher/masquer l'input en fonction de la taille de l'écran 
-    const renderMobileSearch = () => (
+    const openSearchInput = () => {
+        setIsInputActive(true)
+    }
+
+    const closeSearchInput = () => {
+        setIsInputActive(false);
+        setQuery(''); //On ferme aussi les searchresults
+    }
+
+    //Gérer l'affichage de l'input de recherche : 
+    const renderMobileSearch = () => ( //Le rendu avec l'input actif et l'icone croix pour fermer
         <>
-            <SearchInput type="text" placeholder="Rechercher un film..." />
-            <i onClick={() => setIsInputActive(false)} className="fa-solid fa-times"></i>
+            <SearchInput 
+                value={query} 
+                onChange={handleQueryChange} 
+                type="text" 
+                placeholder="Rechercher un film..." 
+            />
+            <i onClick={closeSearchInput} className="fa-solid fa-times"></i>
+            {searchedMovies.length > 0 && <SearchResults results={searchedMovies} />}
         </>
     )
 
-    const renderMobileGlassIcon = () => (
-        <i onClick={() => setIsInputActive(true)} className="fa-solid fa-magnifying-glass"></i>
+    const renderMobileGlassIcon = () => ( //Le rendu avec l'input inactif et l'icone de loupe pour l'ouvrir
+        <i onClick={openSearchInput} className="fa-solid fa-magnifying-glass"></i>
     )
+
+    const renderSearchInput = () => { //Le rendu de l'input qui dépend de la taille de l'écran
+        if (isMobile) {
+            return isInputActive ? renderMobileSearch() : renderMobileGlassIcon();
+
+        } else {
+            return (
+                <SearchInput 
+                    value={query} 
+                    onChange={handleQueryChange} 
+                    type="text" 
+                    placeholder="Rechercher un film..." 
+                />)
+        }
+    }
 
     return (
         <>
             <SearchContainer> 
-                {isMobile ? 
-                    (isInputActive ? renderMobileSearch() : renderMobileGlassIcon()) : 
-                    <SearchInput 
-                        value={query} 
-                        onChange={handleQueryChange} 
-                        type="text" 
-                        placeholder="Rechercher un film..." 
-                    />}
+                {renderSearchInput()}
                 {searchedMovies.length > 0 && <SearchResults results={searchedMovies} />}
             </SearchContainer>
         </>
