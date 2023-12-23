@@ -23,7 +23,6 @@ const MovieContainer = styled.main`
     }
 `
 
-//Contiendra le bouton retour Home (pour les écrans > 1000px) et les icones utilisateur
 const MoviePosterContainer = styled.div`
 `
 
@@ -97,6 +96,7 @@ interface Providerprops {
 
 const MovieDetails = ({id, title, poster_path, original_language, original_title, genres, overview, release_date, runtime, vote_average, actors, directors, recommandations, video, providers}: MovieDetailsProps) => {
 
+    //Gérer l'affichage des versions mobiles ou pc
     const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
 
     useEffect(() => {

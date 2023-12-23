@@ -1,3 +1,5 @@
+//Composant Error chargé lors d'un appel API en erreur
+
 import styled from 'styled-components'
 
 const ErrorContainer = styled.div<ErrorContainerProps>`

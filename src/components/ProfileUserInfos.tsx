@@ -23,7 +23,6 @@ const UserInfoContainer = styled.div`
     padding: ${spacing} 0;
 `
 
-//! Ajouter les items labels et value
 const UserInfoLabel = styled.p`
     width : clamp(120px, 30% , 150px);
 `
@@ -53,16 +52,16 @@ const ProfileUserInfoContainers = () => {
             <UserInfoContainersContainer>
                 <UserInfoContainersTitle> Mon profil <i className="fa-solid fa-chevron-down"></i> </UserInfoContainersTitle>
                 <UserInfoContainer>
-                    <UserInfoLabel> Nom : </UserInfoLabel>
-                    <UserInfoValue> xxx </UserInfoValue>
+                    <UserInfoLabel> Pseudo : </UserInfoLabel>
+                    <UserInfoValue> AntoineGrb </UserInfoValue>
                 </UserInfoContainer>
                 <UserInfoContainer>
                     <UserInfoLabel> Email : </UserInfoLabel>
-                    <UserInfoValue> xxx </UserInfoValue>
+                    <UserInfoValue> antoine.grubert@google.io </UserInfoValue>
                 </UserInfoContainer>
                 <UserInfoContainer>
                     <UserInfoLabel> Mot de passe : </UserInfoLabel>
-                    <UserInfoValue> xxx </UserInfoValue>
+                    <UserInfoValue> xxxxxxxx </UserInfoValue>
                 </UserInfoContainer>
                 <UserActionsContainer>
                     <UserAction> Modifier ses informations </UserAction>

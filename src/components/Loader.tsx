@@ -1,3 +1,5 @@
+//Loader utilisé lors du chargement des données de l'API
+
 import styled, { keyframes } from 'styled-components'
 import {colors} from '../data/styleVariables.js'
 
@@ -48,6 +50,7 @@ interface LoaderProps {
     $isFullScreen:boolean
 }
 
+//La prop isFullScreen n'est dédié qu'au style d'ou le $
 const Loader = ({$isFullScreen}: LoaderProps) => {
     return (
         <>  

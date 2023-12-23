@@ -42,6 +42,7 @@ const HeaderTitle = styled.h1`
 
 const HomeHeader = () => {
 
+    //Gestion de la version mobile ou pc
     const [isMobile, setIsMobile] = useState(window.innerWidth < 1000)
 
     useEffect(() => {
@@ -62,7 +63,10 @@ const HomeHeader = () => {
                     <SearchBar isMobile={isMobile}/>
                     <ProfileIcon isMobile={isMobile}/>
                 </HeaderMenu>
-                <HeaderTitle> Qu'est ce qu'on mate ce soir ? <img src="/assets/logo-popcorn.png" /> </HeaderTitle>
+                <HeaderTitle> 
+                    Qu'est ce qu'on mate ce soir ? 
+                    <img src="/assets/logo-popcorn.png" /> 
+                </HeaderTitle>
             </Header>
         </>
     )

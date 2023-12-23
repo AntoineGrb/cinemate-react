@@ -98,9 +98,6 @@ interface Providerprops {
 
 const MovieInfos = ({originalTitle, language, releaseDate, runtime, actors, directors, overview, video, providers}: MovieInfosProps) => {
 
-    //Ne récupérer que les providers qui nous interesse (ceux présents dans la liste providersData) 
-
-
     //Obtenir le logo des providers
     const getProviderIcon = (providerId: number) => {
         const providerToDisplay = providersData.find(provider => provider.id === providerId);

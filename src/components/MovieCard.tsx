@@ -70,10 +70,6 @@ const Tags = styled.div`
 
 `
 
-// const Icons = styled.div`
-
-// `
-
 interface MovieCardProps {
     backdrop_path: string,
     genre_ids: number[],

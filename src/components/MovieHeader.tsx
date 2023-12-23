@@ -12,7 +12,7 @@ const HeaderBigScreens = styled.header`
         background-color: black;
     }
 `
-
+//Ici on déclare le type de la prop backdrop path pour TypeScript
 const HeaderMobile = styled.header<{ $backdropPath: string | null }>`
     height: 300px;
     margin: auto;
@@ -57,7 +57,8 @@ interface MovieHeaderProps {
     backdropPath:string
 }
 
-//Gérer l'image de fond => mettre une image lambda si pas fournie par l'API
+//Gérer l'image de fond => mettre une image lambda si pas fournie par l'API.
+//Cette fonction est déclarée en dehors du composant pour permettre son utilisation dans styled component
 const handleBackdropImage = (backdropPath: string | null): string => {
     if (backdropPath === null) {
         return 'https://media.gqmagazine.fr/photos/603e6a8da9360b0585bcbc6a/16:9/w_1920,c_limit/108387402';
@@ -68,8 +69,7 @@ const handleBackdropImage = (backdropPath: string | null): string => {
 
 const MovieHeader = ({backdropPath}: MovieHeaderProps) => {
 
-    //Ici le bouton retour à l'accueil ne sera affiché que pour le mobile. 
-    //Pour les écrans PC, il sera gérer au niveau du MoviePoster pour des problématiques d'alignement.
+    //Gérer l'affichage des versions mobiles ou pc
     const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
 
     useEffect(() => {

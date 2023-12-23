@@ -76,7 +76,7 @@ const Icon = styled.i`
 
 const ProfileSeenList = () => {
 
-    const {userList} = useContext(UserContext);
+    const {userList} = useContext(UserContext); //Provient du local Storage
     const [currentPage, setCurrentPage] = useState(0); //La page courante
     const [itemsPerPage, setItemsPerPage] = useState(3); //Le nb d'items par page, variable en fonction de la width de l'écran 
 

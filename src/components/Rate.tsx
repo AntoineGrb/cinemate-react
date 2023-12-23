@@ -30,10 +30,11 @@ interface RateProps {
 
 const Rate = ({rate}: RateProps) => {
 
+    //Gérer la couleur des étoiles de notation
     const [starColor, setStarColor] = useState('#60A561')
 
     useEffect(() => {
-        const color = handleStarColor(rate);
+        const color = handleStarColor(rate); //La fonction est importée d'un autre module
         setStarColor(color);
     },[rate])
 

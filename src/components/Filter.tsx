@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import {mediaSizes, spacing, colors} from '../data/styleVariables.js'
 
-
 const FilterWrapper = styled.div`
     display: flex;
     flex-direction: column;

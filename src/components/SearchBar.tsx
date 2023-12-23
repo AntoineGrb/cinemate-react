@@ -45,6 +45,7 @@ const SearchBar = ({isMobile}: SearchBarProps) => {
     const [query, setQuery] = useState<string>('')
     const {searchedMovies} = useFetchSearchedMovies(query);
 
+    //Gestion de la query tapée par l'utilisateur
     const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(e.target.value);
     }
@@ -58,8 +59,9 @@ const SearchBar = ({isMobile}: SearchBarProps) => {
         setQuery(''); //On ferme aussi les searchresults
     }
 
-    //Gérer l'affichage de l'input de recherche : 
-    const renderMobileSearch = () => ( //Le rendu avec l'input actif et l'icone croix pour fermer
+    //Gérer l'affichage de l'input de recherche 
+    //Input actif => input visible et icone de croix pour fermer
+    const renderMobileSearch = () => ( 
         <>
             <SearchInput 
                 value={query} 
@@ -71,12 +73,13 @@ const SearchBar = ({isMobile}: SearchBarProps) => {
             {searchedMovies.length > 0 && <SearchResults results={searchedMovies} />}
         </>
     )
-
-    const renderMobileGlassIcon = () => ( //Le rendu avec l'input inactif et l'icone de loupe pour l'ouvrir
+    //Input inactif => input non visible et icone de loupe pour l'ouvrir
+    const renderMobileGlassIcon = () => (
         <i onClick={openSearchInput} className="fa-solid fa-magnifying-glass"></i>
     )
 
-    const renderSearchInput = () => { //Le rendu de l'input qui dépend de la taille de l'écran
+    //Affichage ou non de l'input => oui par défaut sur pc et non sur mobile 
+    const renderSearchInput = () => {
         if (isMobile) {
             return isInputActive ? renderMobileSearch() : renderMobileGlassIcon();
 

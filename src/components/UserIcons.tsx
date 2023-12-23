@@ -36,7 +36,6 @@ interface CardUserIcons {
 
 const CardUserIcons = ({movieId, posterPath}: CardUserIcons) => {
     
-    //Récupération du contexte 
     const { userList, setUserList } = useContext(UserContext);
 
     useEffect(() => {
@@ -44,12 +43,14 @@ const CardUserIcons = ({movieId, posterPath}: CardUserIcons) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userList]);
 
-    //Déclarer les states locaux
+    //Déclarer les states locaux pour récupérer les films à voir / vus
     const currentMovie = userList.find(movie => movie.id === movieId);
     const [movieWished, setMovieWished] = useState(currentMovie?.isWished || false );
     const [movieLiked, setMovieLiked] = useState(currentMovie?.isLiked || false);
     const [movieDisliked, setMovieDisliked] = useState(currentMovie?.isDisliked || false);
 
+    //Les actions utilisateurs :
+    //Ajouter/retirer de la liste des envies
     const toggleWishedList = () => {
         //On déclare des constantes pour maj les statuts, sinon React n'a pas le temps de mettre à jour les states pour les utiliser au sein de la fonction
         const isWishedUpdated = !movieWished //On ne toggle que celui ci
@@ -81,6 +82,7 @@ const CardUserIcons = ({movieId, posterPath}: CardUserIcons) => {
         }
     };
 
+    //Ajouter/retirer des films aimés
     const toggleLikedList = () => {
         //On déclare des constantes pour maj les statuts, sinon React n'a pas le temps de mettre à jour les states pour les utiliser au sein de la fonction
         const isWishedUpdated = false
@@ -112,6 +114,7 @@ const CardUserIcons = ({movieId, posterPath}: CardUserIcons) => {
         }
     }
 
+    //Ajouter/retirer des films pas aimés
     const toggleDislikedList = () => {
        //On déclare des constantes pour maj les statuts, sinon React n'a pas le temps de mettre à jour les states pour les utiliser au sein de la fonction
        const isWishedUpdated = false

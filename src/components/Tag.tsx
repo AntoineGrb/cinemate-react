@@ -17,7 +17,7 @@ interface TagProps {
 
 const Tag = ({genre}: TagProps) => {
 
-    //Récupérer le genre formaté (tableau formattedData à part)
+    //Récupérer le genre formaté => utilisation du tableau genresFormatted dans un module
     const getFormattedGenre = () => {
         const formattedGenre = genresFormatted.find(el => el.value === genre);
 
