@@ -1,6 +1,7 @@
 import styled from 'styled-components'
-import {mediaSizes} from '../data/styleVariables.js'
+import {mediaSizes, spacing} from '../data/styleVariables.js'
 import ButtonReturnHomePage from '../components/ButtonReturnHomePage'
+import ProfileIcon from './ProfileIcon.js'
 import { useState, useEffect } from 'react'
 
 const HeaderBigScreens = styled.header`
@@ -33,6 +34,21 @@ const HeaderMobile = styled.header<{ $backdropPath: string | null }>`
             url(${props => handleBackdropImage(props.$backdropPath)}); 
         background-size: contain; 
         background-position: center; 
+    }
+`
+
+const MovieMenu = styled.header`
+    position:absolute;
+    width:90%;
+    min-height: 50px;
+    margin: calc(${spacing} * 4) auto;
+    left:50%;
+    transform: translateX(-50%); //Center à l'horizontal
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    @media (min-width: ${mediaSizes.smallscreen}) {
+        width: 95%;
     }
 `
 
@@ -69,7 +85,10 @@ const MovieHeader = ({backdropPath}: MovieHeaderProps) => {
     return (
         <>  
             <HeaderBigScreens>
-                {isMobile && <ButtonReturnHomePage />}
+                <MovieMenu >
+                    <ButtonReturnHomePage />
+                    <ProfileIcon isMobile={isMobile} />
+                </MovieMenu>
                 <HeaderMobile $backdropPath={backdropPath}> </HeaderMobile>
             </HeaderBigScreens>
         </>

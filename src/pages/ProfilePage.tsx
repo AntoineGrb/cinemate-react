@@ -1,11 +1,11 @@
 import styled from "styled-components"
-import { Link } from "react-router-dom"
 import { spacing, mediaSizes } from "../data/styleVariables"
 import ProfileIcon from "../components/ProfileIcon"
 import ProfileUserInfos from "../components/ProfileUserInfos"
 import ProfileWishedList from "../components/ProfileWishedList"
 import ProfileSeenList from "../components/ProfileSeenList"
 import { useState, useEffect } from "react"
+import ButtonReturnHomePage from "../components/ButtonReturnHomePage"
 
 const ProfilePageContainer = styled.div`
     width: 90%;
@@ -16,37 +16,12 @@ const ProfilePageContainer = styled.div`
     }
 `
 
-const ProfileHeader = styled.header`
+const ProfileMenu = styled.header`
     min-height: 50px;
     margin: calc(${spacing} * 4) auto;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    @media (min-width: ${mediaSizes.smallscreen}) {
-        max-width: 100%;
-    }
-`
-
-const HomeButtonContainer = styled.div`
-    display:flex;
-    align-items:center;
-    gap: ${spacing};
-
-     p {
-        cursor: pointer;
-        font-size:1rem;
-        @media (min-width: ${mediaSizes.phone}) {
-            font-size:1.1rem; 
-        }
-    }
-`
-
-const HomeIcon = styled.i`
-    color:white;
-    font-size:1rem;
-    @media (min-width: ${mediaSizes.phone}) {
-        font-size:1rem; 
-    }
 `
 
 const ProfileTitle = styled.h1`
@@ -81,14 +56,10 @@ const ProfilePage = () => {
     return (
         <>
             <ProfilePageContainer>
-                <ProfileHeader>
-                <Link to='/'>
-                    <HomeButtonContainer> 
-                        <HomeIcon className="fa-solid fa-chevron-left" /> <p>Accueil</p>
-                    </HomeButtonContainer> 
-                </Link>
+                <ProfileMenu>
+                    <ButtonReturnHomePage />
                     <ProfileIcon isMobile={isMobile} />
-                </ProfileHeader>
+                </ProfileMenu>
                 <ProfileTitle> <span>🙋‍♂️</span> AntoineGrb <span>🙋‍♀️</span> </ProfileTitle>
                 <ProfileUserInfos />
                 <ProfileWishedList />
