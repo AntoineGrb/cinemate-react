@@ -4,7 +4,6 @@ import {mediaSizes , spacing} from '../data/styleVariables.js'
 import MovieHeadInfos from './MovieHeadInfos.js'
 import MovieInfos from './MovieInfos.js'
 import MovieRecommandations from './MovieRecommandations.js'
-import ButtonReturnHomePage from './ButtonReturnHomePage.js'
 import UserIcons from './UserIcons.js'
 
 const MovieContainer = styled.main`
@@ -115,7 +114,6 @@ const MovieDetails = ({id, title, poster_path, original_language, original_title
         <>
             <MovieContainer>
                 <MoviePosterContainer>
-                    {!isMobile && <ButtonReturnHomePage />}
                     <MoviePoster src={`https://image.tmdb.org/t/p/w780/${poster_path}`} />
                     {!isMobile && <UserIconsContainer> <UserIcons movieId={id} posterPath={poster_path} />  </UserIconsContainer>}
                 </MoviePosterContainer>

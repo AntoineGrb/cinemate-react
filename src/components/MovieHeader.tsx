@@ -40,6 +40,7 @@ const HeaderMobile = styled.header<{ $backdropPath: string | null }>`
 const MovieMenu = styled.header`
     position:absolute;
     width:90%;
+    max-width: 1300px;
     min-height: 50px;
     margin: calc(${spacing} * 4) auto;
     left:50%;
@@ -48,7 +49,7 @@ const MovieMenu = styled.header`
     justify-content:space-between;
     align-items:center;
     @media (min-width: ${mediaSizes.smallscreen}) {
-        width: 95%;
+        width: 95%; 
     }
 `
 
