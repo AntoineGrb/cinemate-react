@@ -5,7 +5,7 @@ import SearchBar from "./SearchBar"
 import ProfileIcon from "./ProfileIcon.tsx"
 
 const Header = styled.header`
-    margin: calc(${spacing} * 4) auto;
+    margin: calc(${spacing} * 2) auto calc(${spacing} * 4);
     max-width: 90%;
     @media (min-width: ${mediaSizes.smallscreen}) {
         max-width: 100%;
@@ -14,7 +14,7 @@ const Header = styled.header`
 
 const HeaderMenu = styled.div`
     min-height:50px;
-    margin-bottom: calc(${spacing} * 4);
+    margin-bottom: calc(${spacing} * 6);
     display: flex;
     justify-content: flex-end;
     gap:20px;

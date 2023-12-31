@@ -42,7 +42,7 @@ const MovieMenu = styled.header`
     width:90%;
     max-width: 1300px;
     min-height: 50px;
-    margin: calc(${spacing} * 4) auto;
+    margin: calc(${spacing} * 2) auto;
     left:50%;
     transform: translateX(-50%); //Center à l'horizontal
     display:flex;

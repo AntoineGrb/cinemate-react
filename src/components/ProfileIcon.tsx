@@ -9,7 +9,7 @@ const IconContainer = styled.div`
     cursor: pointer;
 
     i {
-        font-size:1.2rem;
+        font-size:1.3rem;
     }
 
     &:hover i , &:hover p {

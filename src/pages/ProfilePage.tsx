@@ -18,7 +18,7 @@ const ProfilePageContainer = styled.div`
 
 const ProfileMenu = styled.header`
     min-height: 50px;
-    margin: calc(${spacing} * 4) auto;
+    margin: calc(${spacing} * 2) auto calc(${spacing} * 6);
     display:flex;
     justify-content:space-between;
     align-items:center;
