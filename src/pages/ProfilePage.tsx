@@ -4,6 +4,7 @@ import ProfileIcon from "../components/ProfileIcon"
 import ProfileUserInfos from "../components/ProfileUserInfos"
 import ProfileWishedList from "../components/ProfileWishedList"
 import ProfileSeenList from "../components/ProfileSeenList"
+import Footer from "../components/Footer"
 import { useState, useEffect } from "react"
 import ButtonReturnHomePage from "../components/ButtonReturnHomePage"
 
@@ -65,6 +66,7 @@ const ProfilePage = () => {
                 <ProfileWishedList />
                 <ProfileSeenList />
             </ProfilePageContainer>
+            <Footer />
         </>
     )
 }

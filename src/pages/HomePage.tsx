@@ -64,9 +64,9 @@ const HomePage = () => {
                     {isError && <Error message='Erreur lors du chargement des films' $isFullScreen={false} />}
                     {isLoading && !isError && <Loader $isFullScreen={false}/>}
                     {!isLoading && !isError && <MoviesList movies={movies} />}
-                    <Footer />
                 </main>
             </HomePageContainer>
+            <Footer />
         </>
     )
 }

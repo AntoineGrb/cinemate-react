@@ -4,6 +4,7 @@ import MovieDetails from '../components/MovieDetails'
 import MovieHeader from '../components/MovieHeader'
 import Loader from '../components/Loader'
 import Error from '../components/Error'
+import Footer from '../components/Footer'
 import { useEffect } from 'react'
 
 const MoviePage = () => {
@@ -49,6 +50,7 @@ const MoviePage = () => {
                         video={movieVideo}
                         providers={movieProviders}
                     />
+                    <Footer />
                     </>
                 )
             }

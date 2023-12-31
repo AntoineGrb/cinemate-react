@@ -28,7 +28,7 @@ const Footer = () => {
             <FooterContainer>
                 <p> Antoine Grubert - nouveau dev web reconverti et heureux ! </p>
                 <div>
-                    <a href="https://www.facebook.com/agrubert/" target="_blank"> <Image src="/assets/icons/fb.png" /> </a>
+                    <a href="https://www.linkedin.com/in/antoine-grubert-dev/" target="_blank"> <Image src="/assets/icons/linkedin.png" /> </a>
                     <a href="https://github.com/AntoineGrb" target="_blank"> <Image src="/assets/icons/git.png" /> </a>
                 </div>
             </FooterContainer>
