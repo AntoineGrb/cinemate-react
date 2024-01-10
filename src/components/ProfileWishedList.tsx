@@ -25,9 +25,15 @@ const UserWishedListTitle = styled.h2`
 const UserWishedList = styled.div`
     display: flex;
     gap: 15px;
+    aspect-ratio: 2; //Permet de maintenir la hauteur de la liste (en responsive) le temps que les affiches soient chargées 
+    max-height: 550px;
     flex-wrap: wrap;
     @media (min-width: ${mediaSizes.tablet}) {
         gap: 30px;
+    }
+    @media (min-width: ${mediaSizes.smallscreen}) {
+        aspect-ratio: 4;
+        max-height: 400px;
     }
 
     img {
@@ -41,7 +47,7 @@ const UserWishedList = styled.div`
 
 const Movie = styled.div`
     position:relative;
-    width: clamp(100px, 30%, 200px);
+    width: clamp(100px, 30%, 300px);
     @media (min-width: ${mediaSizes.smallscreen}) {
         width: clamp(100px, 17%, 200px);
     }
