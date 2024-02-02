@@ -15,8 +15,16 @@ L'application est responsive et développée en mobile-first, pour que les utili
 ## Comment ça marche ? 📖
 
 ### Chercher un film
+La page d'accueil permet de sélectionner ses critères pour le film qu
 
 ### Obtenir les détails du film
+Les détails du film mis en avant sur la page film sont : 
+- 
+
+### Ajouter des films à sa liste
+J'ai créé une section profil utilisateur (non reliée à une base de données mais simplement basée sur le local storage), dans lequel l'utilisateur peut retrouver ses listes de films à voir ou vus.
+
+Les icones pour ajouter un film à sa liste de films à voir ou pour noter un film sont accessibles sur les cartouches sur la page d'accueil et sur la page du film.
 
 ## Technologies utilisées 🛠️
 
