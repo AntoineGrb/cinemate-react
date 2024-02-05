@@ -1,5 +1,5 @@
 export const genresOptions = [
-    {name: 'Tous 🌎', value: ''},
+    {name: 'Tous 🌎', value: ' '},
     {name: 'Action 💪', value: '28'},
     {name: 'Animation 🐭', value: '16'}, 
     {name: 'Aventure 🌍', value: '12'},  
@@ -27,7 +27,7 @@ export const yearsOptions = [
 
 
 export const countriesOptions = [
-    {name: 'Tous 🗺️', value: ''},
+    {name: 'Tous 🗺️', value: ' '},
     {name: 'Allemagne 🇩🇪', value: 'DE'},
     {name: 'Brésil 🇧🇷', value: 'BR'},
     {name: 'Canada 🇨🇦', value: 'CA'},

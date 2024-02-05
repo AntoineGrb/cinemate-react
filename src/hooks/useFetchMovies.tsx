@@ -32,6 +32,10 @@ const useFetchMovies = (params: useFetchMoviesProps) => {
         }
     }, [triggerScroll, isLoading])
 
+    useEffect(() => {
+        console.log('params', params)
+    })
+
     const fetchMovies = async () => {
 
         //Les options d'authentification de l'API
@@ -51,13 +55,12 @@ const useFetchMovies = (params: useFetchMoviesProps) => {
             language=fr&
             page=1&
             sort_by=popularity.desc&
-            primary_release_date.gte=${params.yearMin}&
-            primary_release_date.lte=${params.yearMax}&
+            release_date.gte=${params.yearMin}&
+            release_date.lte=${params.yearMax}&
             with_runtime.gte=${params.durationMin}&
             with_runtime.lte=${params.durationMax}&
             with_origin_country=${params.country}&
             with_genres=${params.genre}&
-            with_people=&
             vote_average.gte=${params.ratingMin}&
             vote_average.lte=${params.ratingMax}&
             vote_count.gte=${params.popularityMin}&
@@ -69,7 +72,9 @@ const useFetchMovies = (params: useFetchMoviesProps) => {
             setIsLoading(true);
             setIsError(false);
             
+            console.log(formattedURL)
             const apiResponse = await axios.get(formattedURL , options);
+            console.log(apiResponse.data.results)
             setMovies(apiResponse.data.results);
 
         } catch (error) {

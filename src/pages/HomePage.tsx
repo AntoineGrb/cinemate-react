@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { useState } from 'react'
+import {useState } from 'react'
 import {mediaSizes} from '../data/styleVariables.js'
 import useFetchMovies from '../hooks/useFetchMovies.js'
 import HomeHeader from '../components/HomeHeader'
@@ -26,10 +26,10 @@ interface Range {
 const HomePage = () => {
 
     //States appel API
-    const [genre, setGenre] = useState<string>('');
-    const [country, setCountry] = useState<string>('');
-    const [year, setYear] = useState<Range>({valueMin:2020, valueMax:2029});
-    const [duration, setDuration] = useState<Range>({valueMin:0, valueMax:90});
+    const [genre, setGenre] = useState<string>(' ');
+    const [country, setCountry] = useState<string>(' ');
+    const [year, setYear] = useState<Range>({valueMin:1970, valueMax:2029});
+    const [duration, setDuration] = useState<Range>({valueMin:0, valueMax:300});
     const [popularity, setPopularity] = useState<Range>({valueMin:0, valueMax:100000});
     const [rating, setRating] = useState<Range>({valueMin:0, valueMax:10});
 
