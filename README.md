@@ -16,6 +16,7 @@ L'application est responsive et développée en mobile-first, pour que les utili
 
 ### Chercher un film
 La page d'accueil permet de sélectionner ses critères et de lancer une recherche pour obtenir une liste de films correspondants.
+
 ![image](https://github.com/AntoineGrb/cinemate-react/assets/119600392/ceb0fe3b-28fc-40aa-af18-9ef0781f1566)
 
 
@@ -24,12 +25,14 @@ Les détails du film mis en avant sur la page film sont :
 - Les informations du film (langue, date de sortie, durée, réalisateur, acteurs, disponibilité sur les plateformes de streaming...)
 - La bande annonce du film
 - Les films associés recommandés
+
 ![image](https://github.com/AntoineGrb/cinemate-react/assets/119600392/24b6bd6f-6da9-4128-b429-3eb5663d7c1d)
 
 
 ### Ajouter des films à sa liste
 J'ai créé une section profil utilisateur (non reliée à une base de données mais simplement basée sur le local storage), dans lequel l'utilisateur peut retrouver ses listes de films à voir ou vus.
 Les icones pour ajouter un film à sa liste de films à voir ou pour noter un film sont accessibles sur les cartouches sur la page d'accueil et sur la page du film.
+
 ![image](https://github.com/AntoineGrb/cinemate-react/assets/119600392/87dd9019-06c2-4069-b996-c6867bff25ab)
 
 
