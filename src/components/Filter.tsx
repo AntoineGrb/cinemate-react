@@ -41,6 +41,7 @@ interface FilterProps {
     options: OptionsObjects[],
     setValue?: React.Dispatch<React.SetStateAction<string>>,
     setValueMinMax?: React.Dispatch<React.SetStateAction<Range>>,
+    info?: boolean
 }
 
 interface Range {
@@ -55,7 +56,7 @@ interface OptionsObjects {
     valueMax?:number
 }
 
-const Filter = ({setValue, setValueMinMax, label , options}: FilterProps) => {
+const Filter = ({setValue, setValueMinMax, label , options, info}: FilterProps) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 
@@ -79,7 +80,14 @@ const Filter = ({setValue, setValueMinMax, label , options}: FilterProps) => {
     return (
         <>
             <FilterWrapper>
-                <Label> {label} </Label>
+                <Label> {label} {info && 
+                    <i 
+                        style={{color: colors.secondHover}}
+                        title="L'API semble ne pas fonctionner correctement pour les filtres de type 'Année'." 
+                        className="fa-solid fa-circle-info"
+                    ></i>
+                    } 
+                </Label>
                 <Select onChange={handleChange}>
                     {options.map((option, index) => (
                         // Ici l'option sera soit une valeur simple, soit une plage de deux valeurs 

@@ -58,7 +58,7 @@ const FiltersForm = ({clickToFetch, setGenre, setYear, setCountry, setDuration, 
                 <FiltersInputs>
                     <Filter setValue={setGenre} label="Genre:" options={genresOptions} />
                     <Filter setValue={setCountry} label="Pays:" options={countriesOptions}/>
-                    <Filter setValueMinMax={setYear} label="Année:" options={yearsOptions}/>
+                    <Filter setValueMinMax={setYear} label="Année:" options={yearsOptions} info/>
                     <Filter setValueMinMax={setDuration} label="Durée:" options={durationsOptions}/>
                     <Filter setValueMinMax={setPopularity} label="Popularité:" options={popularityOptions}/>
                     <Filter setValueMinMax={setRating} label="Notation:" options={ratingsOptions}/>
