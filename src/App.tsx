@@ -24,6 +24,6 @@ const App = () => {
             </UserProvider>
         </>
     )
-}
+} 
 
 export default App

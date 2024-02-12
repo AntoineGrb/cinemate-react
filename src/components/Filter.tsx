@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import {mediaSizes, spacing, colors} from '../data/styleVariables.js'
+import Tooltip from "./Tooltip.js"
 
 const FilterWrapper = styled.div`
     display: flex;
@@ -80,17 +81,11 @@ const Filter = ({setValue, setValueMinMax, label , options, info}: FilterProps) 
     return (
         <>
             <FilterWrapper>
-                <Label> {label} {info && 
-                    <i 
-                        style={{color: colors.secondHover}}
-                        title="L'API semble ne pas fonctionner correctement pour les filtres de type 'Année'." 
-                        className="fa-solid fa-circle-info"
-                    ></i>
-                    } 
+                <Label> {label} {info && <Tooltip /> } 
                 </Label>
                 <Select onChange={handleChange}>
                     {options.map((option, index) => (
-                        // Ici l'option sera soit une valeur simple, soit une plage de deux valeurs 
+                        // Ici l'option sera soit une valeur simple, soit une plage de deux valeurs
                         <Option value={option.value || `${option.valueMin}-${option.valueMax}`} key={index}> 
                             {option.name}
                         </Option>

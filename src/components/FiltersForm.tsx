@@ -52,6 +52,7 @@ interface Range {
 
 const FiltersForm = ({clickToFetch, setGenre, setYear, setCountry, setDuration, setPopularity, setRating}: FiltersFormProps) => {
 
+    //Return
     return (
         <>
             <Filters>
