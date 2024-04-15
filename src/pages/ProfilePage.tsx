@@ -61,7 +61,7 @@ const ProfilePage = () => {
                     <ButtonReturnHomePage />
                     <ProfileIcon isMobile={isMobile} />
                 </ProfileMenu>
-                <ProfileTitle> <span>🙋‍♂️</span> AntoineGrb <span>🙋‍♀️</span> </ProfileTitle>
+                <ProfileTitle> <span>🙋‍♂️</span> Utilisateur non connecté <span>🙋‍♀️</span> </ProfileTitle>
                 <ProfileUserInfos />
                 <ProfileWishedList />
                 <ProfileSeenList />
