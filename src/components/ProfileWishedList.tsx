@@ -6,6 +6,10 @@ import { useContext, useState , useEffect } from "react"
 import { Link } from "react-router-dom"
 import ReactPaginate from "react-paginate"
 
+interface UserWishedListProps {
+    isEmpty: boolean;
+  }
+
 const UserWishedListContainer = styled.section`
     margin-bottom: calc(${spacing} * 5);
 `
@@ -22,18 +26,18 @@ const UserWishedListTitle = styled.h2`
     }
 `
 
-const UserWishedList = styled.div`
+const UserWishedList = styled.div<UserWishedListProps>`
     display: flex;
     gap: 15px;
     aspect-ratio: 2; //Permet de maintenir la hauteur de la liste (en responsive) le temps que les affiches soient chargées 
-    max-height: 550px;
+    max-height: ${props => props.isEmpty ? '100px' : '550px'};
     flex-wrap: wrap;
     @media (min-width: ${mediaSizes.tablet}) {
         gap: 30px;
     }
     @media (min-width: ${mediaSizes.smallscreen}) {
         aspect-ratio: 4;
-        max-height: 400px;
+        max-height: ${props => props.isEmpty ? '100px' : '400px'};
     }
 
     img {
@@ -89,7 +93,7 @@ const ProfileWishedList = () => {
         <>
             <UserWishedListContainer>
                 <UserWishedListTitle>Je veux voir ces films <i className="fa-solid fa-chevron-down"></i> </UserWishedListTitle>
-                <UserWishedList>
+                <UserWishedList isEmpty={displayedMovies.length === 0}>
                     {displayedMovies.length > 0 ? (
                          displayedMovies.map(movie => (
                                 <Movie>

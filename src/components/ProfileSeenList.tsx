@@ -5,6 +5,10 @@ import { useState, useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
 import ReactPaginate from "react-paginate"
 
+interface UserSeenListProps {
+    isEmpty: boolean;
+  }
+
 const UserSeenListContainer = styled.section`
     margin-bottom: calc(${spacing} * 5);
 `
@@ -21,18 +25,18 @@ const UserSeenListTitle = styled.h2`
     }
 `
 
-const UserSeenList = styled.div`
+const UserSeenList = styled.div<UserSeenListProps>`
     display: flex;
     gap: 15px;
     aspect-ratio: 2; //Permet de maintenir la hauteur de la liste (en responsive) le temps que les affiches soient chargées 
-    max-height: 550px;
+    max-height: ${props => props.isEmpty ? '100px' : '550px'};
     flex-wrap: wrap;
     @media (min-width: ${mediaSizes.tablet}) {
         gap: 30px;
     }
     @media (min-width: ${mediaSizes.smallscreen}) {
         aspect-ratio: 4;
-        max-height: 400px;
+        max-height: ${props => props.isEmpty ? '50px' : '400px'};
     }
 
     img {
@@ -41,6 +45,7 @@ const UserSeenList = styled.div`
 
     p {
         margin-bottom: calc(${spacing} * 2.5);
+        display:block;
     }
 `
 
@@ -116,7 +121,7 @@ const ProfileSeenList = () => {
         <>
             <UserSeenListContainer>
                 <UserSeenListTitle>J'ai vu ces films <i className="fa-solid fa-chevron-down"></i> </UserSeenListTitle>
-                <UserSeenList>
+                <UserSeenList isEmpty={displayedMovies.length === 0}>
                     {displayedMovies.length > 0 ? ( 
                          displayedMovies.map(movie => (
                                 <Movie key={movie.id}>
