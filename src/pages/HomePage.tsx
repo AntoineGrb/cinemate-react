@@ -13,6 +13,7 @@ const HomePageContainer = styled.div`
     max-width: 1300px;
     margin: auto;
     width: 100%;
+    min-height: 85vh;
     @media (min-width: ${mediaSizes.smallscreen}) {
         width: 95%;
     }
