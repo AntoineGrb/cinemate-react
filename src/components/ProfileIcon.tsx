@@ -12,16 +12,22 @@ const IconContainer = styled.div`
         font-size:1.3rem;
     }
 
-    &:hover i , &:hover p {
-        color:${colors.secondHover};
-    }
-
     p {
         font-size:1rem;
         @media (min-width: ${mediaSizes.smallscreen}) {
             font-size:1.1rem; 
         }
     }
+
+    &:active i , &:active p {
+        color:${colors.secondHover};
+    }
+
+    @media (min-width: ${mediaSizes.smallscreen}) {
+        &:hover i , &:hover p {
+            color:${colors.secondHover};
+        }
+    }  
 `
 
 interface ProfileIconProps {

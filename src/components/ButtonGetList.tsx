@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import {spacing, colors} from '../data/styleVariables.js'
+import {spacing, colors, mediaSizes} from '../data/styleVariables.js'
 
 const Button = styled.button`
     width: clamp(50px , 70% , 400px);
@@ -11,9 +11,15 @@ const Button = styled.button`
     cursor: pointer;
     transition: background-color 0.1s ease-out;
 
-    &:hover {
+    &:active {
         background-color: ${colors.secondHover};
     }
+
+    @media (min-width: ${mediaSizes.smallscreen}) {
+        &:hover {
+            background-color: ${colors.secondHover};
+        }
+    }    
 `
 
 interface ButtonProps {

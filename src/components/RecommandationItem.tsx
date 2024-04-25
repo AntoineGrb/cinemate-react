@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom'
 const Item = styled.article`
     img {
         width: 100%;
+
+        &:active {
+            filter: brightness(0.7);
+        }
     }
 `
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {colors, spacing} from '../data/styleVariables.js'
+import {colors, spacing , mediaSizes} from '../data/styleVariables.js'
 import { useEffect, useState, useContext } from 'react'
 import { UserContext } from '../context/UserContext.js'
 
@@ -20,13 +20,21 @@ const Icon = styled.i`
         color:${colors.second};
     }
 
-    &:hover {
+    &:active { 
         color:lightgrey;
     }
 
-    &.on:hover {
-        color:${colors.secondHover};
+    @media (min-width: ${mediaSizes.smallscreen}) {
+        &:hover {
+            color:lightgrey;
+        }
+    
+        &.on:hover {
+            color:${colors.secondHover};
+        }
     }
+
+
 `
 
 interface CardUserIcons {

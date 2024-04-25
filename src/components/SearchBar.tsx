@@ -30,7 +30,7 @@ const SearchInput = styled.input`
     &::placeholder {
         color: whitesmoke;
     }
-    &:hover, &:focus {
+    &:active, &:focus {
         border-color: ${colors.secondHover};
     }
 `

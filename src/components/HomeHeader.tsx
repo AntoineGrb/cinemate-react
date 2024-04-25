@@ -64,8 +64,7 @@ const HomeHeader = () => {
                     <ProfileIcon isMobile={isMobile}/>
                 </HeaderMenu>
                 <HeaderTitle> 
-                    Qu'est ce qu'on mate ce soir ? 
-                    <img src="/assets/logo-popcorn.png" /> 
+                    Qu'est ce qu'on mate ce soir ?  <img src="/assets/logo-popcorn.png" /> 
                 </HeaderTitle>
             </Header>
         </>

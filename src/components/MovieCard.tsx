@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import UserIcons from './UserIcons.js'
 
 const Card = styled.article`
-    margin-bottom: calc(${spacing} * 3);  
+    margin-bottom: calc(${spacing} * 3); 
     @media (min-width: ${mediaSizes.smallscreen}) {
         padding-bottom: calc(${spacing} * 2);
         height: 100%;
@@ -23,6 +23,11 @@ const Cover = styled.div`
 
     img {
         width: 100%;
+        
+        &:active {
+            filter: brightness(0.7);
+        }
+        
         @media (min-width: ${mediaSizes.smallscreen}) {
             border-radius: 5px;
             width: 100%;
