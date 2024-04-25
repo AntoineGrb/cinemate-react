@@ -53,11 +53,11 @@ const ProfileUserInfoContainers = () => {
                 <UserInfoContainersTitle> Mon profil <i className="fa-solid fa-chevron-down"></i> </UserInfoContainersTitle>
                 <UserInfoContainer>
                     <UserInfoLabel> Pseudo : </UserInfoLabel>
-                    <UserInfoValue> AntoineGrb </UserInfoValue>
+                    <UserInfoValue> Mon pseudo </UserInfoValue>
                 </UserInfoContainer>
                 <UserInfoContainer>
                     <UserInfoLabel> Email : </UserInfoLabel>
-                    <UserInfoValue> antoine.grubert@google.io </UserInfoValue>
+                    <UserInfoValue> mon.email@gmail.com </UserInfoValue>
                 </UserInfoContainer>
                 <UserInfoContainer>
                     <UserInfoLabel> Mot de passe : </UserInfoLabel>
